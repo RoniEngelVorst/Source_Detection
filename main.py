@@ -30,14 +30,20 @@ def main():
 
 
 
+
     visualize_graph(G)
 
-    reversed_G = reverse_and_normalize_weights(G)
-    print("Reversed edges with normalized weights:")
-    for u, v, data in reversed_G.edges(data=True):
-        print(f"Edge ({u} -> {v}): {data}")
+    # reversed_G = reverse_and_normalize_weights(G)
+    # print("Reversed edges with normalized weights:")
+    # for u, v, data in reversed_G.edges(data=True):
+    #     print(f"Edge ({u} -> {v}): {data}")
+    #
+    # visualize_graph(reversed_G)
 
-    visualize_graph(reversed_G)
+    self_loops_G = apply_self_loop_method(G)
+    visualize_graph(self_loops_G)
+    print(f"did the self loops method work? {verify_transformation(G, self_loops_G)}")
+
 
     # # Generate the graph
     # G = random_graph_generator(100, 0.1, 0.15)
