@@ -19,13 +19,18 @@ def main():
 
     # Example usage
     G = nx.DiGraph()
-    G.add_edge(1, 2, weight=0.5)
-    G.add_edge(2, 4, weight=0.2)
-    G.add_edge(4, 1, weight=0.8)
-    G.add_edge(1, 3, weight=0.1)
-    G.add_edge(3, 2, weight=0.3)
-    G.add_edge(4, 1, weight=0.8)
-    G.add_edge(2, 5, weight=0.3)
+    # G.add_edge(1, 2, weight=0.5)
+    # G.add_edge(2, 4, weight=0.2)
+    # G.add_edge(4, 1, weight=0.8)
+    # G.add_edge(1, 3, weight=0.1)
+    # G.add_edge(3, 2, weight=0.3)
+    # G.add_edge(4, 1, weight=0.8)
+    # G.add_edge(2, 5, weight=0.3)
+    G.add_edge(4, 1, weight=0.2)
+    G.add_edge(3, 4, weight=0.6)
+    G.add_edge(2, 3, weight=0.3)
+    G.add_edge(1, 2, weight=0.1)
+    G.add_edge(4, 2, weight=0.4)
 
 
 
@@ -40,10 +45,13 @@ def main():
     #
     # visualize_graph(reversed_G)
 
-    self_loops_G = apply_self_loop_method(G)
-    visualize_graph(self_loops_G)
-    print(f"did the self loops method work? {verify_transformation(G, self_loops_G)}")
+    # self_loops_G = apply_self_loop_method(G)
+    # visualize_graph(self_loops_G)
+    # print(f"did the self loops method work? {verify_self_loops_transformation(G, self_loops_G)}")
 
+    no_loops_G = apply_no_loops_method(G)
+    visualize_graph(no_loops_G)
+    print(f"did the no loops method work? {verify_no_loops_transformation(G, no_loops_G)}")
 
     # # Generate the graph
     # G = random_graph_generator(100, 0.1, 0.15)

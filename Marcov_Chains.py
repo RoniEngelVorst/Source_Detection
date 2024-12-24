@@ -1,5 +1,7 @@
 import networkx as nx
 import numpy as np
+from scipy import linalg
+
 
 
 def reverse_and_normalize_weights(G):
@@ -74,7 +76,7 @@ def apply_self_loop_method(G):
     return transformed_G
 
 
-def verify_transformation(G, transformed_G):
+def verify_self_loops_transformation(G, transformed_G):
     """
     Verify that the transformation was done correctly by checking:
     1. All nodes have outgoing probabilities that sum to 1
@@ -92,6 +94,66 @@ def verify_transformation(G, transformed_G):
         # Check if outgoing probabilities sum to 1 (within numerical precision)
         out_weights = sum(data['weight'] for _, _, data in transformed_G.out_edges(node, data=True))
         if not np.isclose(out_weights, 1.0, rtol=1e-3):  # Increased tolerance due to rounding
+            return False
+
+    return True
+
+
+def apply_no_loops_method(G):
+    """
+    Apply the no-loops method to a weighted directed graph.
+
+    Parameters:
+    G (networkx.DiGraph): Input weighted directed graph. Edges should have 'weight' attribute.
+
+    Returns:
+    networkx.DiGraph: Transformed graph with reversed edges and normalized weights
+    """
+    # Create a new directed graph
+    transformed_G = nx.DiGraph()
+
+    # First add all nodes from original graph
+    transformed_G.add_nodes_from(G.nodes())
+
+    # Calculate incoming weights for each node
+    win = {}
+    for node in G.nodes():
+        in_edges = G.in_edges(node, data=True)
+        win[node] = sum(data['weight'] for _, _, data in in_edges)
+        if win[node] == 0:
+            raise ValueError(f"Node {node} has no incoming edges")
+
+    # Convert edges with normalized weights
+    for u, v, data in G.edges(data=True):
+        # Create reversed edge with normalized weight qji = pij/win(vj)
+        normalized_weight = round(data['weight'] / win[v], 3)
+        transformed_G.add_edge(v, u, weight=normalized_weight)
+
+    return transformed_G
+
+
+def verify_no_loops_transformation(G, transformed_G):
+    """
+    Verify that the transformation was done correctly by checking:
+    1. All original edges are reversed and normalized
+    2. No self-loops exist
+
+    Parameters:
+    G (networkx.DiGraph): Original graph
+    transformed_G (networkx.DiGraph): Transformed graph
+
+    Returns:
+    bool: True if transformation is valid
+    """
+    # Check no self-loops
+    if any(transformed_G.has_edge(node, node) for node in transformed_G.nodes()):
+        return False
+
+    # Check if all edges are properly reversed and normalized
+    for node in transformed_G.nodes():
+        out_edges = transformed_G.out_edges(node, data=True)
+        out_weights = sum(data['weight'] for _, _, data in out_edges)
+        if not np.isclose(out_weights, 1.0, rtol=1e-3):
             return False
 
     return True
