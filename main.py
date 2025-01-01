@@ -53,6 +53,9 @@ def main():
     visualize_graph(no_loops_G)
     print(f"did the no loops method work? {verify_no_loops_transformation(G, no_loops_G)}")
 
+    pi = calc_stationary_distribution(no_loops_G)
+    print("Stationary distribution:", pi)
+
     # # Generate the graph
     # G = random_graph_generator(100, 0.1, 0.15)
     # source_node = random.choice(list(G.nodes()))  # Choose a random source node

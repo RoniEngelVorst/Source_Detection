@@ -157,3 +157,47 @@ def verify_no_loops_transformation(G, transformed_G):
             return False
 
     return True
+
+
+def calc_stationary_distribution(G):
+    """
+      Calculate the stationary distribution of a Markov chain represented by a NetworkX DiGraph.
+      Returns the stationary distribution as a dictionary where the key is the node and the value is the stationary probability.
+
+      Args:
+      G (networkx.DiGraph): The directed graph representing the Markov chain.
+
+      Returns:
+      dict: A dictionary with nodes as keys and stationary distribution values as values.
+      """
+    # Number of nodes
+    n = len(G.nodes)
+
+    # Create the transition matrix (with probabilities)
+    transition_matrix = np.zeros((n, n))
+    node_list = list(G.nodes)
+
+    for i, node in enumerate(node_list):
+        neighbors = list(G.neighbors(node))
+        num_neighbors = len(neighbors)
+
+        if num_neighbors > 0:
+            # If the edge has a weight, use it; otherwise, assume uniform probability
+            total_weight = sum([G[node][neighbor].get('weight', 1) for neighbor in neighbors])
+
+            for j, neighbor in enumerate(neighbors):
+                weight = G[node][neighbor].get('weight', 1)
+                transition_matrix[i, node_list.index(neighbor)] = weight / total_weight
+
+    # Solve the system (pi * P = pi) with sum(pi) = 1
+    A = transition_matrix.T - np.eye(n)
+    A = np.vstack([A, np.ones(n)])
+    b = np.zeros(n + 1)
+    b[-1] = 1
+
+    pi = np.linalg.lstsq(A, b, rcond=None)[0]
+
+    # Return a dictionary with node as key and stationary distribution as value (rounded to 4 decimal places)
+    stationary_distribution = {node_list[i]: round(float(pi[i]), 4) for i in range(n)}
+
+    return stationary_distribution
