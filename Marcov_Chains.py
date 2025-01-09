@@ -147,6 +147,7 @@ def verify_no_loops_transformation(G, transformed_G):
     """
     # Check no self-loops
     if any(transformed_G.has_edge(node, node) for node in transformed_G.nodes()):
+        print("there is a self loop")
         return False
 
     # Check if all edges are properly reversed and normalized
@@ -154,6 +155,7 @@ def verify_no_loops_transformation(G, transformed_G):
         out_edges = transformed_G.out_edges(node, data=True)
         out_weights = sum(data['weight'] for _, _, data in out_edges)
         if not np.isclose(out_weights, 1.0, rtol=1e-3):
+            print("the sum of weights is not 1")
             return False
 
     return True
