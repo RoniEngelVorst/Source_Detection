@@ -41,21 +41,21 @@ def Atag_calc(G):
     :return: the set of possible sources. (i.e. this function deletes from the graph all the nodes that can't reach all
     the other nodes of the active set.)
     """
-    Atag=[]
+    Atag = []
     for i in G.nodes:
-        #a test that ensures that all the nodes of the graph are reached from i by a directed path.
+        # a test that ensures that all the nodes of the graph are reached from i by a directed path.
         visited = []  # List to keep track of visited nodes.
         queue = []  # Initialize a queue
         visited.append(i)
         queue.append(i)
-        while len(queue)>0:
+        while len(queue) > 0:
             curr = queue.pop(0)
             for neighbour in G.neighbors(curr):
                 if neighbour not in visited:
                     visited.append(neighbour)
                     queue.append(neighbour)
 
-        #a logic text, that all the nodes of G are in the list of visited, if it returns true, then i is inserted to Atag:
+        # a logic text, that all the nodes of G are in the list of visited, if it returns true, then i is inserted to Atag:
         visit_all_active = True
         for j in G.nodes:
             visit_all_active = visit_all_active & (j in visited)
@@ -99,3 +99,4 @@ def create_induced_subgraph(G, nodes):
     :return: The induced subgraph
     """
     return G.subgraph(nodes).copy()
+

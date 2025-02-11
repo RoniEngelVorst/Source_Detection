@@ -1,7 +1,8 @@
 import networkx as nx
 import numpy as np
 from scipy import linalg
-
+from scipy.sparse.linalg import eigs
+import random
 
 
 def reverse_and_normalize_weights(G):
@@ -24,7 +25,7 @@ def reverse_and_normalize_weights(G):
         if total_weight > 0:
             for u, v, attr in incoming_edges:
                 weight = attr.get('weight', 1)
-                normalized_weight = round(weight / total_weight, 3)
+                normalized_weight = weight / total_weight
                 # Add the reversed edge with normalized weight
                 reversed_G.add_edge(v, u, weight=normalized_weight)
 
@@ -41,37 +42,26 @@ def apply_self_loop_method(G):
     Returns:
     networkx.DiGraph: Transformed graph with normalized weights and self-loops
     """
-    # Create a new graph for the transformed version
-    transformed_G = nx.DiGraph()
 
-    # Step 1: Calculate maxin (maximum incoming weight for any node)
-    max_in = 0
-    for node in G.nodes():
-        in_edges = G.in_edges(node, data=True)
-        in_weight = sum(data['weight'] for _, _, data in in_edges)
-        max_in = max(max_in, in_weight)
+    transformed_G = nx.DiGraph()
+    max_in = max(
+        sum(data['weight'] for _, _, data in G.in_edges(node, data=True))
+        for node in G.nodes()
+    )
 
     if max_in == 0:
         raise ValueError("Graph has no weighted edges")
 
-    # Step 1: Convert edges with normalized weights
-    for u, v, data in G.edges(data=True):
-        # Create reversed edge with normalized weight (rounded to 3 decimal places)
-        normalized_weight = round(data['weight'] / max_in, 3)
-        transformed_G.add_edge(v, u, weight=normalized_weight)
-
-    # Step 2: Add self-loops
     for node in G.nodes():
-        # Calculate total incoming weight for the node
-        in_edges = G.in_edges(node, data=True)
-        in_weight = sum(data['weight'] for _, _, data in in_edges)
+        in_weight = sum(data['weight'] for _, _, data in G.in_edges(node, data=True))
+        self_loop_weight = (max_in - in_weight) / max_in
 
-        # Add self-loop with appropriate weight (rounded to 3 decimal places)
-        self_loop_weight = round((max_in - in_weight) / max_in, 3)
-
-        # Only add self-loop if weight is not zero
         if self_loop_weight > 0:
             transformed_G.add_edge(node, node, weight=self_loop_weight)
+
+    for u, v, data in G.edges(data=True):
+        normalized_weight = data['weight'] / max_in
+        transformed_G.add_edge(v, u, weight=normalized_weight)
 
     return transformed_G
 
@@ -93,7 +83,8 @@ def verify_self_loops_transformation(G, transformed_G):
     for node in transformed_G.nodes():
         # Check if outgoing probabilities sum to 1 (within numerical precision)
         out_weights = sum(data['weight'] for _, _, data in transformed_G.out_edges(node, data=True))
-        if not np.isclose(out_weights, 1.0, rtol=1e-3):  # Increased tolerance due to rounding
+        if not np.isclose(out_weights, 1.0, atol=1e-3):  # Absolute tolerance
+            print("out weights is: ", out_weights)
             return False
 
     return True
@@ -120,13 +111,13 @@ def apply_no_loops_method(G):
     for node in G.nodes():
         in_edges = G.in_edges(node, data=True)
         win[node] = sum(data['weight'] for _, _, data in in_edges)
-        if win[node] == 0:
-            raise ValueError(f"Node {node} has no incoming edges")
+        # if win[node] == 0:
+        #     raise ValueError(f"Node {node} has no incoming edges")
 
     # Convert edges with normalized weights
     for u, v, data in G.edges(data=True):
         # Create reversed edge with normalized weight qji = pij/win(vj)
-        normalized_weight = round(data['weight'] / win[v], 3)
+        normalized_weight = data['weight'] / win[v]
         transformed_G.add_edge(v, u, weight=normalized_weight)
 
     return transformed_G
@@ -161,45 +152,113 @@ def verify_no_loops_transformation(G, transformed_G):
     return True
 
 
-def calc_stationary_distribution(G):
+def calc_stationary_distribution(G, num_steps=1):
     """
-      Calculate the stationary distribution of a Markov chain represented by a NetworkX DiGraph.
-      Returns the stationary distribution as a dictionary where the key is the node and the value is the stationary probability.
+    returns the stationary distribution of a markov chain network.
+    The basic logic here is finding the eigen vector that matches to the eigen value =1. (This is a main property of the
+     Stationary Distribution of a Markov Chain.)
+    :param G: a nx.DiGraph that is a Markov chain
+    :return: a dict with the pairs-> (node:probability) for every node in G.
+    """
+    # print("len(G.nodes):",len(G.nodes))
 
-      Args:
-      G (networkx.DiGraph): The directed graph representing the Markov chain.
+    mat = nx.to_numpy_array(G)
+    assert(checkMarkov(mat))
+    evals, evecs = np.linalg.eig(mat.T)
+    evec1 = evecs[:, np.isclose(evals, 1)]
+    stationary_distribution = {}
 
-      Returns:
-      dict: A dictionary with nodes as keys and stationary distribution values as values.
-      """
-    # Number of nodes
-    n = len(G.nodes)
+    if (num_steps > 1):
+        stationary_distribution = random_walk(G, num_steps)
+        return stationary_distribution
 
-    # Create the transition matrix (with probabilities)
-    transition_matrix = np.zeros((n, n))
-    node_list = list(G.nodes)
+    if True in np.isclose(evals, 1):
+        evec1 = evec1[:, 0]
+        stationary = evec1 / evec1.sum()
+        stationary = stationary.real
+        stationary = np.array(stationary)
 
-    for i, node in enumerate(node_list):
-        neighbors = list(G.neighbors(node))
-        num_neighbors = len(neighbors)
+        node_names = []
+        for n in list(G.nodes()):
+            node_names.append(n)
+        for n in range(len(node_names)):
+            # stationary_distribution.update({node_names[n]:stationary[n]})
+            stationary_distribution[node_names[n]] = stationary[n]
 
-        if num_neighbors > 0:
-            # If the edge has a weight, use it; otherwise, assume uniform probability
-            total_weight = sum([G[node][neighbor].get('weight', 1) for neighbor in neighbors])
-
-            for j, neighbor in enumerate(neighbors):
-                weight = G[node][neighbor].get('weight', 1)
-                transition_matrix[i, node_list.index(neighbor)] = weight / total_weight
-
-    # Solve the system (pi * P = pi) with sum(pi) = 1
-    A = transition_matrix.T - np.eye(n)
-    A = np.vstack([A, np.ones(n)])
-    b = np.zeros(n + 1)
-    b[-1] = 1
-
-    pi = np.linalg.lstsq(A, b, rcond=None)[0]
-
-    # Return a dictionary with node as key and stationary distribution as value (rounded to 4 decimal places)
-    stationary_distribution = {node_list[i]: round(float(pi[i]), 4) for i in range(n)}
-
+    else:
+        print("Error in computing the stationary distribution.......")
+        print("True in np.isclose(evals, 1): ",True in np.isclose(evals, 1))
     return stationary_distribution
+
+
+def find_most_probable_source(G,num_steps=1):
+    """
+    Find the most probable source in a Markov chain represented by a NetworkX DiGraph,
+    based on the stationary distribution.
+
+    Args:
+    G (networkx.DiGraph): The directed graph representing the Markov chain.
+
+    Returns:
+    tuple: The most probable source node and its stationary distribution value.
+    """
+    # Calculate the stationary distribution
+    stationary_distribution = calc_stationary_distribution(G,num_steps)
+
+    # Find the node with the maximum stationary probability
+    most_probable_node = max(stationary_distribution, key=stationary_distribution.get)
+    max_prob = stationary_distribution[most_probable_node]
+
+    return most_probable_node, max_prob
+
+
+def checkMarkov(m):
+    """
+    a function to assert that the given matrix is a Markov chain.
+    (the function checks if the sum of each row is 1.)
+    :param m: a matrix
+    :return: bool value
+    """
+    for i in range(0 , len(m)):
+
+        # Find sum of current row
+        sm = 0
+        for j in range(0 , len(m[ i ])):
+            sm = sm + m[ i ][ j ]
+
+        if (sm - 1>0.001):
+            print("sum of line is:", sm)
+            return False
+    return True
+
+def random_walk(G:nx.DiGraph, num_steps):
+    '''
+    this function performs a random walk estimation of a stationary distribution of a markov chain
+    :param G: a DiGraph representing the network
+    :param num_steps: number of steps of the random walk
+    :return: a dict where  {node: number of times the random walk visited node}
+    '''
+    random_start = random.choice(list(G.nodes()))
+    nodes_on_path = [random_start]
+    curr = random_start
+
+    for step in range(num_steps):
+        #create the list of the neighbors of curr:
+        neighbors_list =[friend for friend in G.neighbors(curr)]
+
+        #create the list of weights: for every neighbor v, we use the weight of the edge (curr,v)
+        weights_list = []
+        for neig in neighbors_list:
+            weights_list.append(G.edges[curr,neig]['weight'])
+
+        if len(neighbors_list) > 0:
+            #random.choices returns a list of k=1 selections from neigbors_list, according to the weights_list:
+            curr = random.choices(neighbors_list , weights=weights_list , k=1)[0]
+            nodes_on_path.append(curr)
+
+    #create the dict that summarise the number of visits to each node:
+    ret_dict = {}
+    for node in G.nodes:
+        ret_dict[node] = nodes_on_path.count(node)
+    return ret_dict
+
