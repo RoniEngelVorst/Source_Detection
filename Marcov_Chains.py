@@ -1,8 +1,10 @@
 import networkx as nx
 import numpy as np
+from fontTools.merge.util import equal
 from scipy import linalg
 from scipy.sparse.linalg import eigs
 import random
+import time
 
 
 def reverse_and_normalize_weights(G):
@@ -13,7 +15,7 @@ def reverse_and_normalize_weights(G):
     :return: A new reversed graph with normalized weights.
     """
     # Reverse the graph
-    reversed_G = nx.DiGraph()
+    reversed_G = G.reverse(copy=True)
 
     # Populate the reversed graph and normalize weights
     for node in G.nodes:
@@ -43,14 +45,15 @@ def apply_self_loop_method(G):
     networkx.DiGraph: Transformed graph with normalized weights and self-loops
     """
 
-    transformed_G = nx.DiGraph()
+    transformed_G = G.reverse(copy=True)
     max_in = max(
         sum(data['weight'] for _, _, data in G.in_edges(node, data=True))
         for node in G.nodes()
     )
 
     if max_in == 0:
-        raise ValueError("Graph has no weighted edges")
+        # raise ValueError("Graph has no weighted edges")
+        return transformed_G
 
     for node in G.nodes():
         in_weight = sum(data['weight'] for _, _, data in G.in_edges(node, data=True))
@@ -101,7 +104,7 @@ def apply_no_loops_method(G):
     networkx.DiGraph: Transformed graph with reversed edges and normalized weights
     """
     # Create a new directed graph
-    transformed_G = nx.DiGraph()
+    transformed_G = G.reverse(copy=True)
 
     # First add all nodes from original graph
     transformed_G.add_nodes_from(G.nodes())
@@ -150,6 +153,21 @@ def verify_no_loops_transformation(G, transformed_G):
             return False
 
     return True
+
+def Max_weight_arborescence(G_orig:nx.DiGraph):
+    # maximum weight arborescence (from the Italy paper: "contrasting the spread of
+    # misinformation in online social networks" by Amoruso at. al. 2020)
+    max_arbo = nx.maximum_spanning_arborescence(G_orig, attr='weight')
+    max_weight_arbo_dict ={}
+    # The root of the arborescence is the unique node that has no incoming edges. (i.e. has in-degree of 0)
+    for node in max_arbo:
+        if max_arbo.in_degree(node) == 0:
+            max_weight_arbo_dict[node] = 1
+        else:
+            max_weight_arbo_dict[node] = 0
+    node_dict = max_weight_arbo_dict
+    return node_dict
+
 
 
 def calc_stationary_distribution(G, num_steps=1):
@@ -206,6 +224,8 @@ def find_most_probable_source(G,num_steps=1):
     stationary_distribution = calc_stationary_distribution(G,num_steps)
 
     # Find the node with the maximum stationary probability
+    if not stationary_distribution:
+        return -1, -1
     most_probable_node = max(stationary_distribution, key=stationary_distribution.get)
     max_prob = stationary_distribution[most_probable_node]
 
@@ -238,6 +258,8 @@ def random_walk(G:nx.DiGraph, num_steps):
     :param num_steps: number of steps of the random walk
     :return: a dict where  {node: number of times the random walk visited node}
     '''
+    if not G.nodes():
+        return {}
     random_start = random.choice(list(G.nodes()))
     nodes_on_path = [random_start]
     curr = random_start
