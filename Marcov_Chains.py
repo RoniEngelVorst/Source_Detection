@@ -107,21 +107,28 @@ def apply_no_loops_method(G):
     transformed_G = G.reverse(copy=True)
 
     # First add all nodes from original graph
-    transformed_G.add_nodes_from(G.nodes())
+    # transformed_G.add_nodes_from(G.nodes())
 
     # Calculate incoming weights for each node
-    win = {}
-    for node in G.nodes():
-        in_edges = G.in_edges(node, data=True)
-        win[node] = sum(data['weight'] for _, _, data in in_edges)
-        # if win[node] == 0:
-        #     raise ValueError(f"Node {node} has no incoming edges")
+    for u , v in transformed_G.edges:
+        in_edges = G.in_edges(u, data=True)
+        win = sum(data['weight'] for _, _, data in in_edges)
+        if win > 0:
+            transformed_G.edges[u, v]['weight'] /= win
 
-    # Convert edges with normalized weights
-    for u, v, data in G.edges(data=True):
-        # Create reversed edge with normalized weight qji = pij/win(vj)
-        normalized_weight = data['weight'] / win[v]
-        transformed_G.add_edge(v, u, weight=normalized_weight)
+
+    # win = {}
+    # for node in G.nodes():
+    #     in_edges = G.in_edges(node, data=True)
+    #     win[node] = sum(data['weight'] for _, _, data in in_edges)
+    #     # if win[node] == 0:
+    #     #     raise ValueError(f"Node {node} has no incoming edges")
+    #
+    # # Convert edges with normalized weights
+    # for u, v, data in G.edges(data=True):
+    #     # Create reversed edge with normalized weight qji = pij/win(vj)
+    #     normalized_weight = data['weight'] / win[v]
+    #     transformed_G.add_edge(v, u, weight=normalized_weight)
 
     return transformed_G
 
@@ -209,6 +216,55 @@ def calc_stationary_distribution(G, num_steps=1):
     return stationary_distribution
 
 
+def calc_normalized_stationary_distribution(G, G_orignal, num_steps=1):
+    """
+    returns the stationary distribution of a markov chain network.
+    The basic logic here is finding the eigen vector that matches to the eigen value =1. (This is a main property of the
+     Stationary Distribution of a Markov Chain.)
+    :param G: a nx.DiGraph that is a Markov chain
+    :return: a dict with the pairs-> (node:probability) for every node in G.
+    """
+    # print("len(G.nodes):",len(G.nodes))
+
+    mat = nx.to_numpy_array(G)
+    assert(checkMarkov(mat))
+    evals, evecs = np.linalg.eig(mat.T)
+    evec1 = evecs[:, np.isclose(evals, 1)]
+    stationary_distribution = {}
+
+    if (num_steps > 1):
+        stationary_distribution = random_walk(G, num_steps)
+        return stationary_distribution
+
+    if True in np.isclose(evals, 1):
+        evec1 = evec1[:, 0]
+        stationary = evec1 / evec1.sum()
+        stationary = stationary.real
+        stationary = np.array(stationary)
+
+        node_names = []
+        for n in list(G.nodes()):
+            node_names.append(n)
+        for n in range(len(node_names)):
+            # stationary_distribution.update({node_names[n]:stationary[n]})
+            stationary_distribution[node_names[n]] = stationary[n]
+
+    else:
+        print("Error in computing the stationary distribution.......")
+        print("True in np.isclose(evals, 1): ",True in np.isclose(evals, 1))
+
+    normalized_stationary_distribution = {}
+    # win = {}
+    for node in stationary_distribution.keys():
+        in_edges = G_orignal.in_edges(node, data=True)
+        win = sum(data['weight'] for _, _, data in in_edges)
+        normalized_stationary_distribution.update({node: (stationary_distribution[node] / win) })
+    # stationary_distribution = normalized_stationary_distribution
+
+    return normalized_stationary_distribution
+
+
+
 def find_most_probable_source(G,num_steps=1):
     """
     Find the most probable source in a Markov chain represented by a NetworkX DiGraph,
@@ -222,6 +278,28 @@ def find_most_probable_source(G,num_steps=1):
     """
     # Calculate the stationary distribution
     stationary_distribution = calc_stationary_distribution(G,num_steps)
+
+    # Find the node with the maximum stationary probability
+    if not stationary_distribution:
+        return -1, -1
+    most_probable_node = max(stationary_distribution, key=stationary_distribution.get)
+    max_prob = stationary_distribution[most_probable_node]
+
+    return most_probable_node, max_prob
+
+def find_most_probable_source_no_loop(G, G_orignal, num_steps=1):
+    """
+    Find the most probable source in a Markov chain represented by a NetworkX DiGraph,
+    based on the stationary distribution.
+
+    Args:
+    G (networkx.DiGraph): The directed graph representing the Markov chain.
+
+    Returns:
+    tuple: The most probable source node and its stationary distribution value.
+    """
+    # Calculate the stationary distribution
+    stationary_distribution = calc_normalized_stationary_distribution(G, G_orignal,num_steps)
 
     # Find the node with the maximum stationary probability
     if not stationary_distribution:

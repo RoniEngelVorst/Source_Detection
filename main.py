@@ -4,11 +4,8 @@ from Marcov_Chains import *
 
 
 def main():
-    # Create a graph
-    # G = nx.DiGraph()
-    # G.add_edges_from([
-    #     (1, 2), (2, 3), (3, 4), (4, 5), (5, 1), (3, 5)
-    # ])
+
+    begin_time = time.time()
 
     G1 = random_graph_generator(500,0.1,0.0416)
     G2 = random_graph_generator(1000, 0.1, 0.0204)
@@ -31,58 +28,52 @@ def main():
     max_arbo_num_of_successes = 0
     num_of_too_small_diffusion = 0
     num_of_too_small_A_tag = 0
+    min_size_of_diffusion = 20
     num_of_total_diffusion_calculated = 0 # without small diffusion and small A'
-    print("starting")
+    print("Starting")
     while num_of_total_diffusion_calculated < 1000:
-        source_node = random.choice(list(G2.nodes()))
-        print("the source node is: ", source_node)
-        print("running the ic model")
-        infected_nodes = simulate_ic_model(G2, source_node, max_iterations=len(G2.nodes))
+        source_node = random.choice(list(G1.nodes()))
+        print("The source node is: ", source_node)
+        print("Running the ic model")
+        infected_nodes = simulate_ic_model(G1, source_node, max_iterations=len(G1.nodes))
 
-        if len(infected_nodes) < 20:
-            print("too small diffusion. len(active set)= ", len(infected_nodes))
-            print("the infected nodes are: ", infected_nodes)
+        if len(infected_nodes) < min_size_of_diffusion: # if the diffusion is bigger then 20
+            print("Too small diffusion len(active set)= ", len(infected_nodes))
+            print("The infected nodes are: ", infected_nodes)
             num_of_too_small_diffusion += 1
-            continue
+            continue # check the next graph
 
-        print(f"number of the infected nodes is: {len(infected_nodes)}")
-        infected_graph = create_induced_subgraph(G2, infected_nodes)
+        print(f"Number of the infected nodes is: {len(infected_nodes)}")
+        infected_graph = create_induced_subgraph(G1, infected_nodes)
         possible_sources = Atag_calc(infected_graph)
-        if len(possible_sources) <= 1:
+
+        if len(possible_sources) <= 1: # if A' is smaller then 2
             num_of_too_small_A_tag += 1
-            continue
+            continue # check the next graph
+
         print(f"Possible sources: {possible_sources}")
         print(f"Number of possible sources of infection: {len(possible_sources)}")
-        induced_graph = create_induced_subgraph(G2, possible_sources)
+        induced_graph = create_induced_subgraph(G1, possible_sources)
 
         reversed_G = reverse_and_normalize_weights(induced_graph)
         no_loops_G = apply_no_loops_method(induced_graph)
         self_loops_G = apply_self_loop_method(induced_graph)
         Max_weight_arborescence_G = Max_weight_arborescence(induced_graph)
-        # visualize_graph(no_loops_G)
+
         if not verify_no_loops_transformation(induced_graph, no_loops_G):
-            print(f"did the no loops method work? false")
-            continue
+            print(f"Did the no loops method work? false")
+            continue # the algorithm didn't work move to the next graph
 
         if not verify_self_loops_transformation(induced_graph, self_loops_G):
-            print(f"did the self loops method work? false")
-            continue
-
-        # no_loop_pi = calc_stationary_distribution(no_loops_G)
-        # self_loop_pi = calc_stationary_distribution(self_loops_G)
-        # Max_weight_arborescence_pi = calc_stationary_distribution(Max_weight_arborescence_G, 100)
-        #print("Stationary distribution:", pi)
+            print(f"Did the self loops method work? false")
+            continue # the algorithm didn't work move to the next graph
 
         naive_most_probable_node, naive_max_prob = find_most_probable_source(reversed_G)
-        no_loop_most_probable_node, no_loop_max_prob = find_most_probable_source(no_loops_G)
+        no_loop_most_probable_node, no_loop_max_prob = find_most_probable_source_no_loop(no_loops_G, G1)
         self_loop_most_probable_node, self_loop_max_prob = find_most_probable_source(self_loops_G)
         max_arbo_most_probable_node = max(Max_weight_arborescence_G, key=Max_weight_arborescence_G.get)
         max_arbo_max_prob = Max_weight_arborescence_G[max_arbo_most_probable_node]
 
-        # print(f"The most probable source is node {most_probable_node} with a probability of {max_prob:.4f}")
-
-        # no_loop_real_prob = no_loop_pi[source_node]
-        # self_loop_real_prob = self_loop_pi[source_node]
         print(f"The real source is node {source_node}")
 
         if source_node is naive_most_probable_node:
@@ -98,14 +89,17 @@ def main():
             max_arbo_num_of_successes += 1
 
         num_of_total_diffusion_calculated += 1
-        print(f"the number of total diffusion calculated is: {num_of_total_diffusion_calculated} ")
+        print(f"The number of total diffusion calculated is: {num_of_total_diffusion_calculated} ")
 
-    print(f"the number of Successes in naive is: {naive_num_of_successes} ")
-    print(f"the number of Successes in no loop is: {no_loop_num_of_successes} ")
-    print(f"the number of Successes in self loop is: {self_loop_num_of_successes}")
-    print(f"the number of Max weight arborescence is: {max_arbo_num_of_successes}")
-    print("number of too small diffusion is: ", num_of_too_small_diffusion)
-    print("number of too small A' is: ", num_of_too_small_A_tag)
+    total_time = time.time() - begin_time
+    print(f"The number of Successes in naive is: {naive_num_of_successes} ")
+    print(f"The number of Successes in no loop is: {no_loop_num_of_successes} ")
+    print(f"The number of Successes in self loop is: {self_loop_num_of_successes}")
+    print(f"The number of Max weight arborescence is: {max_arbo_num_of_successes}")
+    print("Number of too small diffusion is: ", num_of_too_small_diffusion)
+    print("Number of too small A' is: ", num_of_too_small_A_tag)
+    print("The total time is: ", total_time)
+
 
     # # Define the infected set
     # infected_set = {1, 3, 5}
