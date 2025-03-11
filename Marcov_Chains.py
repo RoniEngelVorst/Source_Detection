@@ -1,3 +1,5 @@
+import heapq
+
 import networkx as nx
 import numpy as np
 from fontTools.merge.util import equal
@@ -106,15 +108,14 @@ def apply_no_loops_method(G):
     # Create a new directed graph
     transformed_G = G.reverse(copy=True)
 
-    # First add all nodes from original graph
-    # transformed_G.add_nodes_from(G.nodes())
-
-    # Calculate incoming weights for each node
-    for u , v in transformed_G.edges:
-        in_edges = G.in_edges(u, data=True)
+    # Reverse edges and normalize by win(v_j)
+    for u, v in transformed_G.edges:
+        in_edges = G.in_edges(v, data=True)
         win = sum(data['weight'] for _, _, data in in_edges)
         if win > 0:
             transformed_G.edges[u, v]['weight'] /= win
+
+    return transformed_G
 
 
     # win = {}
@@ -187,32 +188,50 @@ def calc_stationary_distribution(G, num_steps=1):
     """
     # print("len(G.nodes):",len(G.nodes))
 
-    mat = nx.to_numpy_array(G)
-    assert(checkMarkov(mat))
+    # mat = nx.to_numpy_array(G)
+    # assert(checkMarkov(mat))
+    # evals, evecs = np.linalg.eig(mat.T)
+    # evec1 = evecs[:, np.isclose(evals, 1)]
+    # stationary_distribution = {}
+    #
+    # if (num_steps > 1):
+    #     stationary_distribution = random_walk(G, num_steps)
+    #     return stationary_distribution
+    #
+    # if True in np.isclose(evals, 1):
+    #     evec1 = evec1[:, 0]
+    #     stationary = evec1 / evec1.sum()
+    #     stationary = stationary.real
+    #     stationary = np.array(stationary)
+    #
+    #     node_names = []
+    #     for n in list(G.nodes()):
+    #         node_names.append(n)
+    #     for n in range(len(node_names)):
+    #         # stationary_distribution.update({node_names[n]:stationary[n]})
+    #         stationary_distribution[node_names[n]] = stationary[n]
+    #
+    # else:
+    #     print("Error in computing the stationary distribution.......")
+    #     print("True in np.isclose(evals, 1): ",True in np.isclose(evals, 1))
+    # return stationary_distribution
+
+    mat = nx.to_numpy_array(G, weight="weight")
     evals, evecs = np.linalg.eig(mat.T)
-    evec1 = evecs[:, np.isclose(evals, 1)]
     stationary_distribution = {}
 
-    if (num_steps > 1):
-        stationary_distribution = random_walk(G, num_steps)
-        return stationary_distribution
+    if not np.isclose(evals, 1).any():
+        print("Error: No eigenvalue equals 1.")
+        return {}
 
-    if True in np.isclose(evals, 1):
-        evec1 = evec1[:, 0]
-        stationary = evec1 / evec1.sum()
-        stationary = stationary.real
-        stationary = np.array(stationary)
+    evec1 = evecs[:, np.isclose(evals, 1)][:, 0].real
+    stationary = evec1 / evec1.sum()
+    stationary = stationary.real
 
-        node_names = []
-        for n in list(G.nodes()):
-            node_names.append(n)
-        for n in range(len(node_names)):
-            # stationary_distribution.update({node_names[n]:stationary[n]})
-            stationary_distribution[node_names[n]] = stationary[n]
+    node_names = list(G.nodes())
+    for i, node in enumerate(node_names):
+        stationary_distribution[node] = stationary[i]
 
-    else:
-        print("Error in computing the stationary distribution.......")
-        print("True in np.isclose(evals, 1): ",True in np.isclose(evals, 1))
     return stationary_distribution
 
 
@@ -226,42 +245,70 @@ def calc_normalized_stationary_distribution(G, G_orignal, num_steps=1):
     """
     # print("len(G.nodes):",len(G.nodes))
 
-    mat = nx.to_numpy_array(G)
-    assert(checkMarkov(mat))
+    # mat = nx.to_numpy_array(G)
+    # assert(checkMarkov(mat))
+    # evals, evecs = np.linalg.eig(mat.T)
+    # evec1 = evecs[:, np.isclose(evals, 1)]
+    # stationary_distribution = {}
+    #
+    # if (num_steps > 1):
+    #     stationary_distribution = random_walk(G, num_steps)
+    #     return stationary_distribution
+    #
+    # if True in np.isclose(evals, 1):
+    #     evec1 = evec1[:, 0]
+    #     stationary = evec1 / evec1.sum()
+    #     stationary = stationary.real
+    #     stationary = np.array(stationary)
+    #
+    #     node_names = []
+    #     for n in list(G.nodes()):
+    #         node_names.append(n)
+    #     for n in range(len(node_names)):
+    #         # stationary_distribution.update({node_names[n]:stationary[n]})
+    #         stationary_distribution[node_names[n]] = stationary[n]
+    #
+    # else:
+    #     print("Error in computing the stationary distribution.......")
+    #     print("True in np.isclose(evals, 1): ",True in np.isclose(evals, 1))
+
+    mat = nx.to_numpy_array(G, weight="weight")
     evals, evecs = np.linalg.eig(mat.T)
-    evec1 = evecs[:, np.isclose(evals, 1)]
     stationary_distribution = {}
 
-    if (num_steps > 1):
-        stationary_distribution = random_walk(G, num_steps)
-        return stationary_distribution
+    if not np.isclose(evals, 1).any():
+        print("Error: No eigenvalue equals 1.")
+        return {}
 
-    if True in np.isclose(evals, 1):
-        evec1 = evec1[:, 0]
-        stationary = evec1 / evec1.sum()
-        stationary = stationary.real
-        stationary = np.array(stationary)
+    evec1 = evecs[:, np.isclose(evals, 1)][:, 0].real
+    stationary = evec1 / evec1.sum()
+    stationary = stationary.real
 
-        node_names = []
-        for n in list(G.nodes()):
-            node_names.append(n)
-        for n in range(len(node_names)):
-            # stationary_distribution.update({node_names[n]:stationary[n]})
-            stationary_distribution[node_names[n]] = stationary[n]
+    node_names = list(G.nodes())
+    for i, node in enumerate(node_names):
+        stationary_distribution[node] = stationary[i]
 
-    else:
-        print("Error in computing the stationary distribution.......")
-        print("True in np.isclose(evals, 1): ",True in np.isclose(evals, 1))
+    normalized_distribution = {}
+    for i, node in enumerate(G.nodes()):
+        win = sum(data['weight'] for _, _, data in G_orignal.in_edges(node, data=True))
+        if win > 0:
+            normalized_distribution[node] = stationary_distribution[node] / win
 
-    normalized_stationary_distribution = {}
-    # win = {}
-    for node in stationary_distribution.keys():
-        in_edges = G_orignal.in_edges(node, data=True)
-        win = sum(data['weight'] for _, _, data in in_edges)
-        normalized_stationary_distribution.update({node: (stationary_distribution[node] / win) })
+    return normalized_distribution
+
+    # normalized_stationary_distribution = {}
+    # for node in stationary_distribution.keys():
+    #     in_edges = G_orignal.in_edges(node, data=True)
+    #     win = sum(data['weight'] for _, _, data in in_edges)
+    #     normalized_stationary_distribution.update({node: (stationary_distribution[node] / win) })
     # stationary_distribution = normalized_stationary_distribution
 
-    return normalized_stationary_distribution
+    # # Final normalization
+    # total = sum(normalized_stationary_distribution.values())
+    # for node in normalized_stationary_distribution:
+    #     normalized_stationary_distribution[node] /= total
+
+    # return normalized_stationary_distribution
 
 
 
@@ -309,6 +356,32 @@ def find_most_probable_source_no_loop(G, G_orignal, num_steps=1):
 
     return most_probable_node, max_prob
 
+def find_top_three(G, num_steps = 1):
+    """
+    Find the 3 most probable source nodes in a Markov chain represented by a NetworkX DiGraph,
+    based on the stationary distribution.
+
+    Args:
+    G (networkx.DiGraph): The directed graph representing the Markov chain.
+
+    Returns:
+    tuple: The most probable source nodes and their stationary distribution values.
+    """
+    # Calculate the stationary distribution
+    stationary_distribution = calc_stationary_distribution(G, num_steps)
+
+    # Find the node with the maximum stationary probability
+    if not stationary_distribution:
+        return -1, -1
+
+    # Get the 3 most probable nodes along with their probabilities
+    top_3_nodes = heapq.nlargest(3, stationary_distribution.items(), key=lambda x: x[1])
+
+    # Extract the nodes and their probabilities
+    top_3_nodes_list = [(node, prob) for node, prob in top_3_nodes]
+
+    return top_3_nodes, top_3_nodes_list
+
 
 def checkMarkov(m):
     """
@@ -317,17 +390,19 @@ def checkMarkov(m):
     :param m: a matrix
     :return: bool value
     """
-    for i in range(0 , len(m)):
+    # for i in range(0 , len(m)):
+    #
+    #     # Find sum of current row
+    #     sm = 0
+    #     for j in range(0 , len(m[ i ])):
+    #         sm = sm + m[ i ][ j ]
+    #
+    #     if (sm - 1>0.001):
+    #         print("sum of line is:", sm)
+    #         return False
+    # return True
 
-        # Find sum of current row
-        sm = 0
-        for j in range(0 , len(m[ i ])):
-            sm = sm + m[ i ][ j ]
-
-        if (sm - 1>0.001):
-            print("sum of line is:", sm)
-            return False
-    return True
+    return np.all(np.isclose(np.sum(m, axis=1), 1))
 
 def random_walk(G:nx.DiGraph, num_steps):
     '''

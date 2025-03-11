@@ -62,11 +62,11 @@ def main():
 
         if not verify_no_loops_transformation(induced_graph, no_loops_G):
             print(f"Did the no loops method work? false")
-            continue # the algorithm didn't work move to the next graph
-
+        #     continue # the algorithm didn't work move to the next graph
+        #
         if not verify_self_loops_transformation(induced_graph, self_loops_G):
             print(f"Did the self loops method work? false")
-            continue # the algorithm didn't work move to the next graph
+        #     continue # the algorithm didn't work move to the next graph
 
         naive_most_probable_node, naive_max_prob = find_most_probable_source(reversed_G)
         no_loop_most_probable_node, no_loop_max_prob = find_most_probable_source_no_loop(no_loops_G, G1)
@@ -87,6 +87,26 @@ def main():
 
         if source_node is max_arbo_most_probable_node:
             max_arbo_num_of_successes += 1
+
+        # naive_most_probable_node, naive_max_prob = find_top_three(reversed_G)
+        # # no_loop_most_probable_node, no_loop_max_prob = find_top_three(no_loops_G, G1)
+        # self_loop_most_probable_node, self_loop_max_prob = find_top_three(self_loops_G)
+        # max_arbo_most_probable_node = max(Max_weight_arborescence_G, key=Max_weight_arborescence_G.get)
+        # max_arbo_max_prob = Max_weight_arborescence_G[max_arbo_most_probable_node]
+        #
+        # print(f"The real source is node {source_node}")
+        #
+        # if any(source_node == node for node, _ in naive_most_probable_node):
+        #     naive_num_of_successes += 1
+        #
+        # # if any(source_node == node for node, _ in no_loop_most_probable_node):
+        # #     no_loop_num_of_successes += 1
+        #
+        # if any(source_node == node for node, _ in self_loop_most_probable_node):
+        #     self_loop_num_of_successes += 1
+        #
+        # if source_node is max_arbo_most_probable_node:
+        #     max_arbo_num_of_successes += 1
 
         num_of_total_diffusion_calculated += 1
         print(f"The number of total diffusion calculated is: {num_of_total_diffusion_calculated} ")
