@@ -383,6 +383,38 @@ def find_top_three(G, num_steps = 1):
     return top_3_nodes, top_3_nodes_list
 
 
+def is_most_probable_near_source(G, source_node):
+    stationary_distribution = calc_stationary_distribution(G)
+
+    if not stationary_distribution:
+        return False
+
+    most_probable_node = max(stationary_distribution, key=stationary_distribution.get)
+    shortest_path_length = nx.shortest_path_length(G, source=source_node, target=most_probable_node)
+
+    return shortest_path_length <= 3
+
+
+def is_most_probable_near_source_no_loop(G, G_original, source_node):
+    stationary_distribution = calc_normalized_stationary_distribution(G, G_original)
+
+    if not stationary_distribution:
+        return False
+
+    most_probable_node = max(stationary_distribution, key=stationary_distribution.get)
+    shortest_path_length = nx.shortest_path_length(G, source=source_node, target=most_probable_node)
+
+    return shortest_path_length <= 3
+
+def is_most_probable_near_source_max_arbo(Max_weight_arborescence_G, source_node):
+
+    most_probable_node = max(Max_weight_arborescence_G, key=Max_weight_arborescence_G.get)
+    shortest_path_length = nx.shortest_path_length(Max_weight_arborescence_G, source=source_node, target=most_probable_node)
+
+    return shortest_path_length <= 3
+
+
+
 def checkMarkov(m):
     """
     a function to assert that the given matrix is a Markov chain.

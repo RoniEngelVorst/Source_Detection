@@ -88,6 +88,8 @@ def main():
         if source_node is max_arbo_most_probable_node:
             max_arbo_num_of_successes += 1
 
+        # ********************************** the second way of comparing with the top 3 ******************************
+
         # naive_most_probable_node, naive_max_prob = find_top_three(reversed_G)
         # # no_loop_most_probable_node, no_loop_max_prob = find_top_three(no_loops_G, G1)
         # self_loop_most_probable_node, self_loop_max_prob = find_top_three(self_loops_G)
@@ -108,6 +110,29 @@ def main():
         # if source_node is max_arbo_most_probable_node:
         #     max_arbo_num_of_successes += 1
 
+        # *************************** the third comparing with the nearest up to 3 *************************************
+
+        # naive_most_probable_node = is_most_probable_near_source(reversed_G, source_node)
+        # no_loop_most_probable_node = is_most_probable_near_source_no_loop(no_loops_G, G1, source_node)
+        # self_loop_most_probable_node = is_most_probable_near_source(self_loops_G, source_node)
+        # max_arbo_most_probable_node = is_most_probable_near_source_max_arbo(Max_weight_arborescence_G)
+        #
+        # print(f"The real source is node {source_node}")
+        #
+        # if naive_most_probable_node:
+        #     naive_num_of_successes += 1
+        #
+        # if no_loop_most_probable_node:
+        #     no_loop_num_of_successes += 1
+        #
+        # if self_loop_most_probable_node:
+        #     self_loop_num_of_successes += 1
+        #
+        # if max_arbo_most_probable_node:
+        #     max_arbo_num_of_successes += 1
+
+        # ********************************************** end **********************************************************
+
         num_of_total_diffusion_calculated += 1
         print(f"The number of total diffusion calculated is: {num_of_total_diffusion_calculated} ")
 
@@ -119,71 +144,6 @@ def main():
     print("Number of too small diffusion is: ", num_of_too_small_diffusion)
     print("Number of too small A' is: ", num_of_too_small_A_tag)
     print("The total time is: ", total_time)
-
-
-    # # Define the infected set
-    # infected_set = {1, 3, 5}
-    #
-    # # Find possible sources
-    # possible_sources = Atag_calc_infected(G, infected_set)
-    # print("Possible sources:", possible_sources)
-
-    # Example usage
-    # G = nx.DiGraph()
-    # G.add_edge(1, 2, weight=0.5)
-    # G.add_edge(2, 4, weight=0.2)
-    # G.add_edge(4, 1, weight=0.8)
-    # G.add_edge(1, 3, weight=0.1)
-    # G.add_edge(3, 2, weight=0.3)
-    # G.add_edge(4, 1, weight=0.8)
-    # G.add_edge(2, 5, weight=0.3)
-    # G.add_edge(4, 1, weight=0.2)
-    # G.add_edge(3, 4, weight=0.6)
-    # G.add_edge(2, 3, weight=0.3)
-    # G.add_edge(1, 2, weight=0.1)
-    # G.add_edge(4, 2, weight=0.4)
-
-    # reversed_G = reverse_and_normalize_weights(induced_graph)
-    # visualize_graph(reversed_G)
-    # visualize_graph(G)
-
-    # reversed_G = reverse_and_normalize_weights(G)
-    # print("Reversed edges with normalized weights:")
-    # for u, v, data in reversed_G.edges(data=True):
-    #     print(f"Edge ({u} -> {v}): {data}")
-    #
-    # visualize_graph(reversed_G)
-
-    # # visualize_graph(induced_graph)
-    # self_loops_G = apply_self_loop_method(induced_graph)
-    # # visualize_graph(self_loops_G)
-    # print(f"did the self loops method work? {verify_self_loops_transformation(induced_graph, self_loops_G)}")
-
-    # self_loops_G = apply_self_loop_method(G)
-    # visualize_graph(self_loops_G)
-    # print(f"did the self loops method work? {verify_self_loops_transformation(G, self_loops_G)}")
-
-
-    # # Generate the graph
-    # G = random_graph_generator(100, 0.1, 0.15)
-    # source_node = random.choice(list(G.nodes()))  # Choose a random source node
-    # infected_nodes = simulate_ic_model(G, source_node, max_iterations=len(G.nodes))
-    #
-    # visualize_large_graph(G,500)
-    # visualize_large_graph(create_induced_subgraph(G, infected_nodes))
-    #
-    # print(f"Initial source node: {source_node}")
-    # print(f"Number of infected nodes: {len(infected_nodes)}")
-    # print(f"Infected nodes: {infected_nodes}")
-    #
-    # # Find possible sources among the infected nodes
-    # possible_sources = Atag_calc_infected(G, infected_nodes)
-    # print(f"Posssible sources: {possible_sources}")
-    # print(f"Number of possible sources of infection: {len(possible_sources)}")
-    #
-    # visualize_large_graph(create_induced_subgraph(G, possible_sources))
-
-
 
 
 if __name__ == '__main__':
