@@ -56,16 +56,10 @@ def main():
         induced_graph = create_induced_subgraph(G1, possible_sources)
 
         reversed_G = reverse_and_normalize_weights(induced_graph)
-        # no_loops_G = apply_no_loops_method(induced_graph)
         no_loops_G = reverse_and_normalize_weights(induced_graph)
         self_loops_G = apply_self_loop_method(induced_graph)
         Max_weight_arborescence_G = Max_weight_arborescence(induced_graph)
 
-        sd_self_loops = calc_stationary_distribution(self_loops_G)
-        # sd_no_loops = calc_normalized_stationary_distribution(no_loops_G, G1)
-        #
-        print("Self-Loops Stationary Distribution:", sd_self_loops)
-        # print("No-Loops Stationary Distribution:", sd_no_loops)
 
         if not verify_no_loops_transformation(induced_graph, no_loops_G):
             print(f"Did the no loops method work? false")
@@ -76,10 +70,10 @@ def main():
         #     continue # the algorithm didn't work move to the next graph
 
         naive_most_probable_node, naive_max_prob = find_most_probable_source(reversed_G)
-        no_loop_most_probable_node, no_loop_max_prob = find_most_probable_source_no_loops_new(no_loops_G, induced_graph)
+        no_loop_most_probable_node, no_loop_max_prob = find_most_probable_source_no_loop(no_loops_G, induced_graph)
         self_loop_most_probable_node, self_loop_max_prob = find_most_probable_source(self_loops_G)
-        # max_arbo_most_probable_node = max(Max_weight_arborescence_G, key=Max_weight_arborescence_G.get)
-        # max_arbo_max_prob = Max_weight_arborescence_G[max_arbo_most_probable_node]
+        max_arbo_most_probable_node = max(Max_weight_arborescence_G, key=Max_weight_arborescence_G.get)
+        max_arbo_max_prob = Max_weight_arborescence_G[max_arbo_most_probable_node]
 
         print(f"The real source is node {source_node}")
 
@@ -92,8 +86,8 @@ def main():
         if source_node is self_loop_most_probable_node:
             self_loop_num_of_successes += 1
 
-        # if source_node is max_arbo_most_probable_node:
-        #     max_arbo_num_of_successes += 1
+        if source_node is max_arbo_most_probable_node:
+            max_arbo_num_of_successes += 1
 
         # ********************************** the second way of comparing with the top 3 ******************************
 
