@@ -4,51 +4,98 @@ import matplotlib.pyplot as plt
 
 
 
+# def random_graph_generator(numberOfNodes, ProbOfAnEdge, maxProbForDiffusion):
+#     """
+#        A function that generates a random graph based on the given parameters:
+#        - numberOfNodes: the number of nodes in the graph.
+#        - ProbOfAnEdge: the probability of having an edge between any two nodes.
+#        - maxProbForDiffusion: the maximum probability for edge weights (for diffusion probabilities).
+#
+#        The function creates a directed graph, and assigns random diffusion probabilities to each edge.
+#
+#        :param numberOfNodes: number of nodes in the graph
+#        :param ProbOfAnEdge: probability for edge creation between any pair of nodes
+#        :param maxProbForDiffusion: maximum diffusion probability for the edges
+#
+#        :return: the resulting directed random graph as a nx.Graph object
+#        """
+#     # Create a random directed graph using the specified edge probability
+#     G = nx.fast_gnp_random_graph(numberOfNodes, ProbOfAnEdge, directed=True)
+#
+#     # Assign random weights to the edges based on the maximum diffusion probability
+#     for (u, v) in G.edges():
+#         G.edges[u, v]['weight'] = random.random() * maxProbForDiffusion
+#
+#     return G
 def random_graph_generator(numberOfNodes, ProbOfAnEdge, maxProbForDiffusion):
     """
-       A function that generates a random graph based on the given parameters:
-       - numberOfNodes: the number of nodes in the graph.
-       - ProbOfAnEdge: the probability of having an edge between any two nodes.
-       - maxProbForDiffusion: the maximum probability for edge weights (for diffusion probabilities).
+    Generates a random directed graph with independent edge weights.
 
-       The function creates a directed graph, and assigns random diffusion probabilities to each edge.
+    - numberOfNodes: the number of nodes in the graph.
+    - ProbOfAnEdge: probability of an edge between any pair of nodes.
+    - maxProbForDiffusion: maximum weight for the edges.
 
-       :param numberOfNodes: number of nodes in the graph
-       :param ProbOfAnEdge: probability for edge creation between any pair of nodes
-       :param maxProbForDiffusion: maximum diffusion probability for the edges
+    :param numberOfNodes: int
+    :param ProbOfAnEdge: float
+    :param maxProbForDiffusion: float
 
-       :return: the resulting directed random graph as a nx.Graph object
-       """
-    # Create a random directed graph using the specified edge probability
+    :return: nx.DiGraph object
+    """
+    # Create a random directed graph
     G = nx.fast_gnp_random_graph(numberOfNodes, ProbOfAnEdge, directed=True)
 
-    # Assign random weights to the edges based on the maximum diffusion probability
+    # Assign random weights independently for each directed edge
     for (u, v) in G.edges():
         G.edges[u, v]['weight'] = random.random() * maxProbForDiffusion
 
     return G
 
 
+# def visualize_graph(G):
+#     """
+#     Visualizes the graph with nodes, edges, and optionally edge weights.
+#     """
+#     pos = nx.spring_layout(G)  # Spring layout
+#
+#     plt.figure(figsize=(10, 8))
+#     nx.draw_networkx_nodes(G, pos, node_size=500, node_color='skyblue')
+#     nx.draw_networkx_edges(G, pos, width=1.0, alpha=0.7, edge_color='gray')
+#
+#     nx.draw_networkx_labels(G, pos, font_size=10, font_weight='bold', font_color='black')
+#
+#     # Only draw edge labels if the graph is small enough
+#     if len(G.edges()) < 100:  # Example condition, adjust as needed
+#         edge_labels = nx.get_edge_attributes(G, 'weight')
+#         nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=8, font_color='red')
+#
+#     plt.title("Graph Visualization with Edge Weights")
+#     plt.axis('off')
+#     plt.show()
 def visualize_graph(G):
     """
-    Visualizes the graph with nodes, edges, and optionally edge weights.
+    Visualizes the directed graph with correct edge weights.
     """
-    pos = nx.spring_layout(G)  # Spring layout
+    pos = nx.spring_layout(G)  # Spring layout for positioning
+    plt.figure(figsize=(12, 8))
 
-    plt.figure(figsize=(10, 8))
+    # Draw nodes
     nx.draw_networkx_nodes(G, pos, node_size=500, node_color='skyblue')
-    nx.draw_networkx_edges(G, pos, width=1.0, alpha=0.7, edge_color='gray')
 
-    nx.draw_networkx_labels(G, pos, font_size=10, font_weight='bold', font_color='black')
+    # Draw directed edges
+    nx.draw_networkx_edges(G, pos, width=1.0, edge_color='gray', arrows=True, connectionstyle="arc3,rad=0.2")
 
-    # Only draw edge labels if the graph is small enough
-    if len(G.edges()) < 100:  # Example condition, adjust as needed
-        edge_labels = nx.get_edge_attributes(G, 'weight')
-        nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=8, font_color='red')
+    # Add labels to nodes
+    nx.draw_networkx_labels(G, pos, font_size=10, font_weight='bold')
 
-    plt.title("Graph Visualization with Edge Weights")
+    # Display edge weights
+    edge_labels = {(u, v): f"{d['weight']:.2f}" for u, v, d in G.edges(data=True)}
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_color='red')
+
+    plt.title("Graph Visualization with Correct Edge Weights")
     plt.axis('off')
     plt.show()
+
+
 
 
 def visualize_subgraph(G, max_nodes=100):
