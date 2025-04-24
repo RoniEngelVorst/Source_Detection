@@ -156,3 +156,50 @@ def visualize_large_graph(G, max_nodes=1000, layout='spring'):
     plt.title(f"Graph Visualization (Subgraph - {len(subgraph.nodes())} nodes)")
     plt.axis('off')
     plt.show()
+
+
+#*********************************** from yael's code ****************************************************8
+
+def read_network_from_file(file_path, graph_name, seperator, norm_epsilon):
+    g = nx.DiGraph()
+    with open(file_path ,'r') as my_file:
+        for line in my_file.readlines():
+            # print("line", line)
+            if line[0]!="%" and line[0]!="#":
+                line1 = line.split(seperator)
+                if(graph_name=='epinion_trust'):
+                    pass
+                    #print("sep",seperator,"line1", line1)
+                v1 = int(line1[0].strip())
+                v2 = int(line1[1].strip())
+                weight1 = random.random()
+                g.add_edge(v_of_edge=v1,u_of_edge=v2,weight = weight1)
+
+    #adgusting the edge-probabilities in order for the nodes sum-of-out-degree will be 1 +epsilon:
+    if(norm_epsilon!=0.0):
+        for node1 in g.nodes:
+            out_deg = g.out_degree(node1)
+            for (node1, node2) in g.out_edges(node1):
+                new_prob = (g.edges[node1,node2]["weight"] /out_deg)*(1+norm_epsilon)
+                g.edges[node1,node2]["weight"] = min(new_prob,1.0)
+
+    print("Finished readeing", graph_name ,"network","number of nodes:",g.number_of_nodes(),"number of edges:",g.number_of_edges())
+    return g
+
+def read_network_from_file_simple(file_path, graph_name, seperator):
+    g = nx.DiGraph()
+    with open(file_path ,'r') as my_file:
+        for line in my_file.readlines():
+            # print("line", line)
+            if line[0]!="%" and line[0]!="#":
+                line1 = line.split(seperator)
+                if(graph_name=='epinion_trust'):
+                    pass
+                    #print("sep",seperator,"line1", line1)
+                v1 = int(line1[0].strip())
+                v2 = int(line1[1].strip())
+                weight1 = random.random()
+                g.add_edge(v_of_edge=v1,u_of_edge=v2 ,weight = weight1)
+
+    print("Finished readeing", graph_name ,"network. ","number of nodes:",len(g.nodes),"number of edges:",len(g.edges))
+    return g

@@ -1,0 +1,24 @@
+The number of Successes in naive is: 38 
+The number of Successes in no loop is: 96 
+The number of Successes in self loop is: 96
+The number of Max weight arborescence is: 77
+Number of too small diffusion is: 3812
+Number of too small A' is: 24
+The total time is: 481.5501320362091
+number of to small diffusions: 3812
+number of times where |A'| was 1 (so all the algorithms are basically the same):24
+number of 'good' diffusions:1000
+____________________________
+
+The number of Successes in naive is: 49 
+The number of Successes in no loop is: 142 
+The number of Successes in self loop is: 142
+The number of Max weight arborescence is: 126
+Number of too small diffusion is: 17868
+Number of too small A' is: 2980
+The total time is: 9978.682445049286
+number of to small diffusions: 17868
+number of times where |A'| was 1 (so all the algorithms are basically the same):2980
+number of 'good' diffusions:1000
+____________________________
+
