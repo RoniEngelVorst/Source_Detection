@@ -18,16 +18,17 @@ def run_real_graph():
     begin_time = time.time()
 
     real_graphs = [
-        # (r"real_graphs\youtube_links\out.youtube-links" , "youtube_links" , " " , 2) ,  # too big, but i can't decrease the steps any more...
-        # (r"real_graphs\youtube_friendship\out.com-youtube", "youtube_friendships", " ", 4),  # V
-        # (r"real_graphs\twitter\out.ego-twitter", "twitter", "\t", 100),
-        # (r"real_graphs\slashdot\out.matrix", "slashdot", " ", 3),  # V
-        # (r"real_graphs\gplus\out.ego-gplus", "google_plus", "\t", 7),
-        # (r"real_graphs\facebook_nips\out.ego-facebook", "facebook_nips", " ", 10),
-        # (r"real_graphs\facebook_friendship\out.facebook-wosn-wall", "facebook_friendships", " ", 4),  # V
-        # (r"real_graphs\epinion_trust\soc-Epinions1.txt", "epinion_trust", "\t", 3),  # V
-        (r"real_graphs\digg\out.digg-friends", "digg", " ", 3),  # V
-        # (r"real_graphs\advogato\out.advogato", "advogato", " ", 4),  # V
+        # (r"real_graphs\youtube-links\out.youtube-links" , "youtube_links" , " " , 2) ,  # need to run on server
+        # (r"real_graphs\youtube_friendship\out.com-youtube", "youtube_friendships", " ", 4),  # Not in the table
+        # (r"real_graphs\ego-twitter\out.ego-twitter", "twitter", "\t", 100), # need to run on server
+        # (r"real_graphs\slashdot\out.matrix", "slashdot", " ", 3),  # What Yeal wrote. but it is not in the folder
+        # (r"real_graphs\slashdot-threads\out.slashdot-threads", "slashdot", " ", 3),  # Our fix. need to check
+        # (r"real_graphs\ego-gplus\out.ego-gplus", "google_plus", "\t", 7), # need to run on server
+        # (r"real_graphs\facebook_nips\out.ego-facebook", "facebook_nips", " ", 10), Not in the article
+        # (r"real_graphs\facebook-wosn-links\out.facebook-wosn-links", "facebook_friendships", " ", 4), # need to run on server
+         (r"real_graphs\soc-Epinions1\out.soc-Epinions1", "epinion_trust", "\t", 3),  # need to run on server
+        # (r"real_graphs\digg-friends\out.digg-friends", "digg", " ", 3),  # need to run on server
+        # (r"real_graphs\advogato\out.advogato", "advogato", " ", 4),  # need to run on server
     ]
 
 
