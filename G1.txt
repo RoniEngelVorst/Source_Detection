@@ -34,3 +34,15 @@ number of times where |A'| was 1 (so all the algorithms are basically the same):
 number of 'good' diffusions:1000
 ____________________________
 
+The number of Successes in naive is: 6 
+The number of Successes in no loop is: 11 
+The number of Successes in self loop is: 11
+The number of Max weight arborescence is: 2
+Number of too small diffusion is: 376
+Number of too small A' is: 3
+The total time is: 52.651790618896484
+number of to small diffusions: 376
+number of times where |A'| was 1 (so all the algorithms are basically the same):3
+number of 'good' diffusions:100
+____________________________
+

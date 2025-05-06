@@ -5,32 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="005fd8af-6c24-4a4f-9fc4-a6a96862439c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/real_graphs/digg-friends/README.digg-friends" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/digg-friends/meta.digg-friends" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/digg-friends/out.digg-friends" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/ego-gplus/README.ego-gplus" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/ego-gplus/meta.ego-gplus" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/ego-gplus/out.ego-gplus" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/ego-twitter/README.ego-twitter" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/ego-twitter/meta.ego-twitter" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/ego-twitter/out.ego-twitter" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/facebook-wosn-links/README.facebook-wosn-links" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/facebook-wosn-links/meta.facebook-wosn-links" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/facebook-wosn-links/out.facebook-wosn-links" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/slashdot-threads/README.slashdot-threads" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/slashdot-threads/meta.slashdot-threads" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/slashdot-threads/out.slashdot-threads" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/soc-Epinions1/README.soc-Epinions1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/soc-Epinions1/meta.soc-Epinions1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/soc-Epinions1/out.soc-Epinions1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/youtube-links/README.youtube-links" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/youtube-links/meta.youtube-links" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_graphs/youtube-links/out.youtube-links" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Source_Detection.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Source_Detection.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Real_Graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/Real_Graphs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/real_graphs/digg/meta.digg-friends" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

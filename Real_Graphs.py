@@ -14,7 +14,7 @@ def Append_to_file(file_name, text):
     file.close()
 
 
-def run_real_graph():
+def run_real_graphs():
     begin_time = time.time()
 
     real_graphs = [
