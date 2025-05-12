@@ -146,3 +146,45 @@ def create_induced_subgraph(G, nodes):
     :return: The induced subgraph
     """
     return G.subgraph(nodes).copy()
+
+
+# K-Sources Methods
+
+def simulate_ic_model_on_k_sources(G, source_nodes, max_iterations=500, seed=None):
+    """
+    Simulates the Independent Cascade (IC) model on the graph with a given source node.
+
+    :param G: The graph on which the simulation is run (must have 'weight' attributes on edges).
+    :param source_nodes: The initial nodes that will be infected.
+    :param max_iterations: Maximum number of iterations before stopping the simulation.
+    :param seed: Optional random seed for reproducibility.
+
+    :return: A set of infected nodes.
+    """
+    if seed is not None:
+        random.seed(seed)
+
+    # Validate edge weights
+    assert all('weight' in G[u][v] for u, v in G.edges), "All edges must have a 'weight' attribute!"
+    assert all(0 <= G[u][v]['weight'] <= 1 for u, v in G.edges), "Edge weights must be in [0, 1]!"
+
+    # Step 1: Initialize infection state
+    infected = set(source_nodes)  # Nodes that are infected
+    new_infected = set(source_nodes)  # Nodes to attempt to infect in the next iteration
+
+    # Step 2: Simulate the spread of the infection
+    iterations = 0
+    while new_infected and iterations < max_iterations:
+        next_infected = set()
+        for node in new_infected:
+            for neighbor in G.neighbors(node):  # Only considers outgoing edges
+                if neighbor not in infected:
+                    # Infection probability
+                    infection_probability = G[node][neighbor]['weight']
+                    if random.random() < infection_probability:
+                        next_infected.add(neighbor)
+        infected.update(next_infected)
+        new_infected = next_infected
+        iterations += 1
+
+    return infected

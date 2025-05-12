@@ -391,3 +391,60 @@ def random_walk(G:nx.DiGraph, num_steps):
     for node in G.nodes:
         ret_dict[node] = nodes_on_path.count(node)
     return ret_dict
+
+
+# K-Sources Methods
+
+def find_K_most_probable_sources(G,k, num_steps=1):
+    """
+    Find the k most probable sources in a Markov chain represented by a NetworkX DiGraph,
+    based on the stationary distribution.
+
+    Args:
+    G (networkx.DiGraph): The directed graph representing the Markov chain.
+
+    Returns:
+    tuple: The most probable source node and its stationary distribution value.
+    """
+    # Calculate the stationary distribution
+    stationary_distribution = calc_stationary_distribution(G)
+
+    # Find the nodes with the maximum stationary probability
+    if not stationary_distribution:
+        return -1, -1
+
+    top_k_nodes = sorted(stationary_distribution, key=stationary_distribution.get, reverse=True)[:k]
+    top_k_probs = [stationary_distribution[node] for node in top_k_nodes]
+
+    return top_k_nodes, top_k_probs
+
+def find_K_most_probable_sources_no_loop(G, G_original, k, num_steps=1):
+    """
+    Find the k most probable sources in a Markov chain represented by a NetworkX DiGraph,
+    based on the stationary distribution.
+
+    Args:
+    G (networkx.DiGraph): The directed graph representing the Markov chain.
+
+    Returns:
+    tuple: The most probable source node and its stationary distribution value.
+    """
+    normalized_stationary_distribution = {}
+    stationary_distribution = calc_stationary_distribution(G)
+    if not stationary_distribution:
+        return -1, -1
+
+    win_prob = find_Win_prob(G_original)
+    # print("Win probs: ", win_prob)
+    for node in stationary_distribution:
+        if win_prob[node] == 0:
+            normalized_stationary_distribution[node] = 0  # handling division by 0
+            continue
+        normalized_stationary_distribution[node] = stationary_distribution[node] / win_prob[node]
+
+    # print("Stationary dist before normalization: " , stationary_distribution)
+    print("Stationary dist for no loops after normalization: ", normalized_stationary_distribution)
+    top_k_nodes = sorted(normalized_stationary_distribution, key=normalized_stationary_distribution.get, reverse=True)[ :k]
+    top_k_probs = [normalized_stationary_distribution[node] for node in top_k_nodes]
+
+    return top_k_nodes, top_k_probs
