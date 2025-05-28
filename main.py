@@ -7,12 +7,14 @@ from K_Sources import *
 
 
 
+
 def main():
 
     begin_time = time.time()
-    # run_real_graphs()
+    run_real_graphs()
     # run_random_graphs()
-    Run_Top_K_Sources_On_Random_Graphs(k=1)
+    # Run_Top_K_Sources_On_Random_Graphs(k=1)
+
 
     total_time = time.time() - begin_time
 

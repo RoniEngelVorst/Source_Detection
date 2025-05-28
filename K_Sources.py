@@ -128,3 +128,6 @@ def Find_Top_K_Sources_Random(graphs, k):
         print(f"The number of Successes in self loop is: {self_loop_num_of_successes} ")
         print(f"The number of Max weight arborescence is: {max_arbo_num_of_successes}")
         print("number of 'good' diffusions:" + str(num_of_total_diffusion_calculated))
+
+# ****** Method 2 - K Times ******
+

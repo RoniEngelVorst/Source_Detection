@@ -1,24 +1,25 @@
-The number of Successes in naive is: 38 
-The number of Successes in no loop is: 96 
-The number of Successes in self loop is: 96
-The number of Max weight arborescence is: 77
-Number of too small diffusion is: 3812
-Number of too small A' is: 24
-The total time is: 481.5501320362091
-number of to small diffusions: 3812
-number of times where |A'| was 1 (so all the algorithms are basically the same):24
-number of 'good' diffusions:1000
-____________________________
+Results for graph G13 (total good diffusions: 1000)
 
-The number of Successes in naive is: 49 
-The number of Successes in no loop is: 142 
-The number of Successes in self loop is: 142
-The number of Max weight arborescence is: 126
-Number of too small diffusion is: 17868
-Number of too small A' is: 2980
-The total time is: 9978.682445049286
-number of to small diffusions: 17868
-number of times where |A'| was 1 (so all the algorithms are basically the same):2980
-number of 'good' diffusions:1000
+--- Evaluation 1: Exact match successes ---
+Naive successes: 54
+No loop successes: 132
+Self loop successes: 132
+Max arborescence successes: 110
+
+--- Evaluation 2: Source in top-3 successes ---
+Naive top-3 successes: 142
+No loop top-3 successes: 142
+Self loop top-3 successes: 228
+Max arborescence top-3 successes: 154
+
+--- Evaluation 3: Within 3-hop neighborhood successes ---
+Naive near-source successes: 242
+No loop near-source successes: 257
+Self loop near-source successes: 257
+Max arborescence near-source successes: 230
+
+Number of too small diffusions: 17781
+Number of too small A': 2898
+Total time elapsed: 112401.49 seconds
 ____________________________
 
