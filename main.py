@@ -11,9 +11,11 @@ from K_Sources import *
 def main():
 
     begin_time = time.time()
-    run_real_graphs()
+    # run_real_graphs()
     # run_random_graphs()
     # Run_Top_K_Sources_On_Random_Graphs(k=1)
+    # Run_K_Sources_On_Random_Graphs_Method_2(k=3)
+    Run_K_Sources_On_Random_Graphs_Method_3(k=2)
 
 
     total_time = time.time() - begin_time

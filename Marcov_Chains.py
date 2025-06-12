@@ -36,6 +36,7 @@ def reverse_and_normalize_weights(G):
     return reversed_G
 
 
+
 def apply_self_loop_method(G):
     """
     Apply the self-loop method to a weighted directed graph.
@@ -318,10 +319,6 @@ def find_most_probable_source_no_loop(G, G_original, num_steps=1):
     most_probable_node = max(normalized_stationary_distribution, key=normalized_stationary_distribution.get)
     max_prob = normalized_stationary_distribution[most_probable_node]
 
-    top_3 = sorted(normalized_stationary_distribution.items(), key=lambda x: x[1], reverse=True)[:3]
-    print("Top 3 nodes with highest stationary probabilities:")
-    for node, prob in top_3:
-        print(f"{node}: {prob:.6e}")
 
     return most_probable_node, max_prob
 
@@ -381,18 +378,42 @@ def is_most_probable_near_source_max_arbo(Max_weight_arborescence_G, G, source_n
     return shortest_path_length <= 3
 
 
-def checkMarkov(m):
+# def checkMarkov(m):
     """
     Check if the given matrix is a valid Markov chain transition matrix,
-    allowing a tolerance of 0.01 for row sums.
+    allowing a tolerance of 0.001 for row sums.
 
     Parameters:
     m (numpy.ndarray): The matrix to check.
 
-    Returns:
-    bool: True if each row sums approximately to 1 (±0.01), False otherwise.
+    Returns:    bool: True if each row sums approximately to 1 (±0.001), False otherwise.
     """
-    return np.all(np.isclose(np.sum(m, axis=1), 1.0, atol=0.01))
+
+   # return np.all(np.isclose(np.sum(m, axis=1), 1.0, atol=0.001))
+
+def checkMarkov(m):
+    """
+    Check if the given matrix is a Markov chain transition matrix.
+    Conditions:
+    - Each row sums approximately to 1 (±0.001)
+    - All elements are non-negative
+
+    :param m: 2D list or numpy array
+    :return: bool, True if valid Markov matrix, False otherwise
+    """
+    for i in range(len(m)):
+        row_sum = sum(m[i])
+        # Check if row sum is close enough to 1 (within tolerance)
+        if abs(row_sum - 1) > 0.001:
+            print(f"Sum of row {i} is {row_sum}, which is outside the tolerance.")
+            return False
+        # Check if any value in the row is negative
+        for val in m[i]:
+            if val < 0:
+                print(f"Negative value found in row {i}: {val}")
+                return False
+    return True
+
 
 def random_walk(G:nx.DiGraph, num_steps):
     '''
@@ -487,3 +508,29 @@ def find_K_most_probable_sources_no_loop(G, G_original, k, num_steps=1):
     top_k_probs = [normalized_stationary_distribution[node] for node in top_k_nodes]
 
     return top_k_nodes, top_k_probs
+
+# Evaluation methods for k sources
+
+# A function that returns the percentage of success - from the real k sources, how many are in our prediction sources
+def percent_exact_matches(real_sources, estimated_sources):
+    return len(set(real_sources) & set(estimated_sources)) / len(real_sources)
+
+# From our predicted sources how many of them are real ones
+def precision_of_estimation(real_sources, estimated_sources):
+    return len(set(real_sources) & set(estimated_sources)) / len(estimated_sources)
+
+def count_sources_within_distance_k(G, real_sources, estimated_sources, max_distance=3):
+    count = 0
+    for real_node in real_sources:
+        if any(
+            nx.has_path(G, real_node, est_node) and
+            nx.shortest_path_length(G, real_node, est_node) <= max_distance
+            for est_node in estimated_sources
+        ):
+            count += 1
+    return count
+
+def percent_sources_within_distance_k(G, real_sources, estimated_sources, max_distance=3):
+    return count_sources_within_distance_k(G, real_sources, estimated_sources, max_distance) / len(real_sources)
+
+
