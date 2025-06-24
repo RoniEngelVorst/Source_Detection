@@ -1,0 +1,19 @@
+Results for graph epinion_trust (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 91
+Max arborescence successes: 72
+
+--- Evaluation 2: Source in top-3 successes ---
+No loop top-3 successes: 104
+Max arborescence top-3 successes: 110
+
+--- Evaluation 3: Within 3-hop neighborhood successes ---
+No loop near-source successes: 545
+Max arborescence near-source successes: 291
+
+Number of too small diffusions: 18714
+Number of too small A': 422
+Total time elapsed: 3433.70 seconds
+____________________________
+

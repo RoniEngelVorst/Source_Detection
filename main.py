@@ -4,6 +4,7 @@ from Marcov_Chains import *
 from Real_Graphs import *
 from Random_Graphs import *
 from K_Sources import *
+from K_Sources_Random import *
 
 
 
@@ -14,8 +15,8 @@ def main():
     # run_real_graphs()
     # run_random_graphs()
     # Run_Top_K_Sources_On_Random_Graphs(k=1)
-    # Run_K_Sources_On_Random_Graphs_Method_2(k=3)
-    Run_K_Sources_On_Random_Graphs_Method_3(k=2)
+    run_k_sources_all_methods_on_Random()
+
 
 
     total_time = time.time() - begin_time

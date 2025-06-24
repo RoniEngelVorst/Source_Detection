@@ -36,6 +36,28 @@ def reverse_and_normalize_weights(G):
     return reversed_G
 
 
+def reverse_and_normalize_weights_no_loop(G_original):  # added by hadar!
+    """
+    Constructs a reversed graph using the 'no-loops' method.
+    Edges are reversed, and weights are divided by the in-degree of the original source.
+    """
+    reversed_G = nx.DiGraph()
+    in_weights = {}
+
+    # First compute weighted in-degree for each node
+    for u, v, data in G_original.edges(data=True):
+        weight = data.get('weight', 1.0)
+        in_weights[v] = in_weights.get(v, 0.0) + weight
+
+    # Now build the reversed graph with normalized edge weights
+    for u, v, data in G_original.edges(data=True):
+        weight = data.get('weight', 1.0)
+        if in_weights[v] > 0:
+            normalized_weight = weight / in_weights[v]
+            reversed_G.add_edge(v, u, weight=normalized_weight)
+
+    return reversed_G, in_weights
+
 
 def apply_self_loop_method(G):
     """
@@ -162,6 +184,25 @@ def Max_weight_arborescence(G_orig:nx.DiGraph):
     return node_dict
 
 
+def Approx_max_weight_arborescence(G_orig: nx.DiGraph):  # added by hadar
+    """
+    Approximate version of max-weight arborescence.
+    For each node, keeps the max incoming edge.
+    The root (no incoming edge) is marked 1, others 0.
+    """
+    max_weight_arbo_dict = {}
+
+    for node in G_orig.nodes:
+        in_edges = G_orig.in_edges(node, data=True)
+        if not in_edges:
+            max_weight_arbo_dict[node] = 1  # root
+        else:
+            _ = max(in_edges, key=lambda x: x[2].get('weight', 0))
+            max_weight_arbo_dict[node] = 0
+
+    return max_weight_arbo_dict
+
+
 
 def calc_stationary_distribution(G: nx.DiGraph):
     """
@@ -281,11 +322,7 @@ def find_most_probable_source(G,num_steps=1):
     most_probable_node = max(stationary_distribution, key=stationary_distribution.get)
     max_prob = stationary_distribution[most_probable_node]
 
-    # printing to 3 for debug
-    top_3 = sorted(stationary_distribution.items(), key=lambda x: x[1], reverse=True)[:3]
-    print("Top 3 nodes with highest stationary probabilities:")
-    for node, prob in top_3:
-        print(f"{node}: {prob:.6e}")
+
 
     return most_probable_node, max_prob
 
@@ -318,6 +355,7 @@ def find_most_probable_source_no_loop(G, G_original, num_steps=1):
 
     most_probable_node = max(normalized_stationary_distribution, key=normalized_stationary_distribution.get)
     max_prob = normalized_stationary_distribution[most_probable_node]
+
 
 
     return most_probable_node, max_prob
@@ -378,42 +416,18 @@ def is_most_probable_near_source_max_arbo(Max_weight_arborescence_G, G, source_n
     return shortest_path_length <= 3
 
 
-# def checkMarkov(m):
+def checkMarkov(m):
     """
     Check if the given matrix is a valid Markov chain transition matrix,
-    allowing a tolerance of 0.001 for row sums.
+    allowing a tolerance of 0.01 for row sums.
 
     Parameters:
     m (numpy.ndarray): The matrix to check.
 
-    Returns:    bool: True if each row sums approximately to 1 (±0.001), False otherwise.
+    Returns:
+    bool: True if each row sums approximately to 1 (±0.01), False otherwise.
     """
-
-   # return np.all(np.isclose(np.sum(m, axis=1), 1.0, atol=0.001))
-
-def checkMarkov(m):
-    """
-    Check if the given matrix is a Markov chain transition matrix.
-    Conditions:
-    - Each row sums approximately to 1 (±0.001)
-    - All elements are non-negative
-
-    :param m: 2D list or numpy array
-    :return: bool, True if valid Markov matrix, False otherwise
-    """
-    for i in range(len(m)):
-        row_sum = sum(m[i])
-        # Check if row sum is close enough to 1 (within tolerance)
-        if abs(row_sum - 1) > 0.001:
-            print(f"Sum of row {i} is {row_sum}, which is outside the tolerance.")
-            return False
-        # Check if any value in the row is negative
-        for val in m[i]:
-            if val < 0:
-                print(f"Negative value found in row {i}: {val}")
-                return False
-    return True
-
+    return np.all(np.isclose(np.sum(m, axis=1), 1.0, atol=0.01))
 
 def random_walk(G:nx.DiGraph, num_steps):
     '''
@@ -502,8 +516,7 @@ def find_K_most_probable_sources_no_loop(G, G_original, k, num_steps=1):
             continue
         normalized_stationary_distribution[node] = stationary_distribution[node] / win_prob[node]
 
-    # print("Stationary dist before normalization: " , stationary_distribution)
-    print("Stationary dist for no loops after normalization: ", normalized_stationary_distribution)
+
     top_k_nodes = sorted(normalized_stationary_distribution, key=normalized_stationary_distribution.get, reverse=True)[ :k]
     top_k_probs = [normalized_stationary_distribution[node] for node in top_k_nodes]
 
@@ -511,7 +524,7 @@ def find_K_most_probable_sources_no_loop(G, G_original, k, num_steps=1):
 
 # Evaluation methods for k sources
 
-# A function that returns the percentage of success - from the real k sources, how many are in our prediction sources
+# A function that returns the percentage of success - from the real k sources, how many are in our prediction sources - Recall
 def percent_exact_matches(real_sources, estimated_sources):
     return len(set(real_sources) & set(estimated_sources)) / len(real_sources)
 

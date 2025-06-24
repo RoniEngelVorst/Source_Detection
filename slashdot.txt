@@ -1,0 +1,19 @@
+Results for graph slashdot (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 6
+Max arborescence successes: 6
+
+--- Evaluation 2: Source in top-3 successes ---
+No loop top-3 successes: 5
+Max arborescence top-3 successes: 8
+
+--- Evaluation 3: Within 3-hop neighborhood successes ---
+No loop near-source successes: 540
+Max arborescence near-source successes: 145
+
+Number of too small diffusions: 2727
+Number of too small A': 121
+Total time elapsed: 130909.17 seconds
+____________________________
+

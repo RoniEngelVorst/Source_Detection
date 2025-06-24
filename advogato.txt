@@ -1,0 +1,25 @@
+Results for graph advogato (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+Naive successes: 1
+No loop successes: 8
+Self loop successes: 8
+Max arborescence successes: 8
+
+--- Evaluation 2: Source in top-3 successes ---
+Naive top-3 successes: 2
+No loop top-3 successes: 2
+Self loop top-3 successes: 18
+Max arborescence top-3 successes: 11
+
+--- Evaluation 3: Within 3-hop neighborhood successes ---
+Naive near-source successes: 992
+No loop near-source successes: 917
+Self loop near-source successes: 917
+Max arborescence near-source successes: 309
+
+Number of too small diffusions: 3465
+Number of too small A': 177
+Total time elapsed: 228030.91 seconds
+____________________________
+

@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="005fd8af-6c24-4a4f-9fc4-a6a96862439c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/G1_k.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/K_Sources_Random.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/K_Sources.py" beforeDir="false" afterPath="$PROJECT_DIR$/K_Sources.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Marcov_Chains.py" beforeDir="false" afterPath="$PROJECT_DIR$/Marcov_Chains.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,23 +38,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.K_Sources.executor": "Run",
-    "Python.Marcov_Chains.executor": "Run",
-    "Python.Real_Graphs.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.K_Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Marcov_Chains.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Real_Graphs.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-fb887030ada0-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.21565.199" />
+        <option value="bundled-python-sdk-0509580d9d50-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.14494.241" />
       </set>
     </attachedChunks>
   </component>

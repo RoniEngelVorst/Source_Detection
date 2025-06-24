@@ -1,0 +1,19 @@
+Results for graph digg (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 81
+Max arborescence successes: 78
+
+--- Evaluation 2: Source in top-3 successes ---
+No loop top-3 successes: 72
+Max arborescence top-3 successes: 101
+
+--- Evaluation 3: Within 3-hop neighborhood successes ---
+No loop near-source successes: 248
+Max arborescence near-source successes: 145
+
+Number of too small diffusions: 22954
+Number of too small A': 1530
+Total time elapsed: 5572.72 seconds
+____________________________
+

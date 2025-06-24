@@ -3,46 +3,12 @@ from Independent_Cascade import *
 from Marcov_Chains import *
 from collections import Counter
 
+def Append_to_file(file_name, text):
+    print(file_name, ":", text)
+    with open(file_name, "a", encoding="utf-8") as file:
+        file.write(text + "\n")
 
 # ****** Method 1 - Top K-Sources ******
-
-def Run_Top_K_Sources_On_Random_Graphs(k):
-    begin_time = time.time()
-    G1 = random_graph_generator(500, 0.1, 0.0416)
-    # G2 = random_graph_generator(1000, 0.1, 0.0204)
-    # G3 = random_graph_generator(1000, 0.1, 0.0204)
-    # G4 = random_graph_generator(3000, 0.1, 0.0071)
-    # G5 = random_graph_generator(4000, 0.1, 0.0052)
-    # G6 = random_graph_generator(5000, 0.1, 0.0041)
-    # G7 = random_graph_generator(500, 0.0416, 0.1)
-    # G8 = random_graph_generator(1000, 0.02, 0.1)
-    # G9 = random_graph_generator(2000, 0.0101, 0.1)
-    # G10 = random_graph_generator(3000, 0.0067, 0.1)
-    # G11 = random_graph_generator(4000, 0.0052, 0.1)
-    # G12 = random_graph_generator(5000, 0.0041, 0.1)
-    # G13 = random_graph_generator(10000, 0.002, 0.1)
-    # G14 = random_graph_generator(5000, 0.0013, 0.1)
-
-    random_graphs = [
-        ("G1", 500, 0.1, 0.0416),
-        # ("G2", 1000, 0.1, 0.0204),
-        # ("G3", 2000, 0.1, 0.0101),
-        # ("G4", 3000, 0.1, 0.0071),
-        # ("G5", 4000, 0.1, 0.0052),
-        # ("G6", 5000, 0.1, 0.0041),
-        # ("G7", 500, 0.0416, 0.1),
-        # ("G8", 1000, 0.02, 0.1),
-        # ("G9", 2000, 0.0101, 0.1),
-        # ("G10", 3000, 0.0067, 0.1),
-        # ("G11", 4000, 0.0052, 0.1),
-        # ("G12", 5000, 0.0041, 0.1),
-        # ("G13", 10000, 0.002, 0.1),
-        # ("G14", 15000, 0.0013, 0.1)
-    ]
-    Find_Top_K_Sources_Random(random_graphs, k)
-    total_time = time.time() - begin_time
-    print("The total time is: " + str(total_time))
-
 
 def Find_Top_K_Sources_Random(graphs, k):
     num_of_total_diffusion_calculated = 0  # without small diffusion and small A'
@@ -132,42 +98,6 @@ def Find_Top_K_Sources_Random(graphs, k):
         print("number of 'good' diffusions:" + str(num_of_total_diffusion_calculated))
 
 # ****** Method 2 - K Times ******
-def Run_K_Sources_On_Random_Graphs_Method_2(k):
-    begin_time = time.time()
-    G1 = random_graph_generator(500, 0.1, 0.0416)
-    # G2 = random_graph_generator(1000, 0.1, 0.0204)
-    # G3 = random_graph_generator(1000, 0.1, 0.0204)
-    # G4 = random_graph_generator(3000, 0.1, 0.0071)
-    # G5 = random_graph_generator(4000, 0.1, 0.0052)
-    # G6 = random_graph_generator(5000, 0.1, 0.0041)
-    # G7 = random_graph_generator(500, 0.0416, 0.1)
-    # G8 = random_graph_generator(1000, 0.02, 0.1)
-    # G9 = random_graph_generator(2000, 0.0101, 0.1)
-    # G10 = random_graph_generator(3000, 0.0067, 0.1)
-    # G11 = random_graph_generator(4000, 0.0052, 0.1)
-    # G12 = random_graph_generator(5000, 0.0041, 0.1)
-    # G13 = random_graph_generator(10000, 0.002, 0.1)
-    # G14 = random_graph_generator(5000, 0.0013, 0.1)
-
-    random_graphs = [
-        ("G1", 500, 0.1, 0.0416),
-        # ("G2", 1000, 0.1, 0.0204),
-        # ("G3", 2000, 0.1, 0.0101),
-        # ("G4", 3000, 0.1, 0.0071),
-        # ("G5", 4000, 0.1, 0.0052),
-        # ("G6", 5000, 0.1, 0.0041),
-        # ("G7", 500, 0.0416, 0.1),
-        # ("G8", 1000, 0.02, 0.1),
-        # ("G9", 2000, 0.0101, 0.1),
-        # ("G10", 3000, 0.0067, 0.1),
-        # ("G11", 4000, 0.0052, 0.1),
-        # ("G12", 5000, 0.0041, 0.1),
-        # ("G13", 10000, 0.002, 0.1),
-        # ("G14", 15000, 0.0013, 0.1)
-    ]
-    Find_Source_K_Times(random_graphs, k)
-    total_time = time.time() - begin_time
-    print("The total time is: " + str(total_time))
 
 def Find_Source_K_Times(graphs, k):
     num_of_total_diffusion_calculated = 0  # without small diffusion and small A'
@@ -259,43 +189,6 @@ def Find_Source_K_Times(graphs, k):
         print("number of 'good' diffusions:" + str(num_of_total_diffusion_calculated))
 
 # ****** Method 3 - K strongest ******
-def Run_K_Sources_On_Random_Graphs_Method_3(k):
-    begin_time = time.time()
-    G1 = random_graph_generator(500, 0.1, 0.0416)
-    # G2 = random_graph_generator(1000, 0.1, 0.0204)
-    # G3 = random_graph_generator(1000, 0.1, 0.0204)
-    # G4 = random_graph_generator(3000, 0.1, 0.0071)
-    # G5 = random_graph_generator(4000, 0.1, 0.0052)
-    # G6 = random_graph_generator(5000, 0.1, 0.0041)
-    # G7 = random_graph_generator(500, 0.0416, 0.1)
-    # G8 = random_graph_generator(1000, 0.02, 0.1)
-    # G9 = random_graph_generator(2000, 0.0101, 0.1)
-    # G10 = random_graph_generator(3000, 0.0067, 0.1)
-    # G11 = random_graph_generator(4000, 0.0052, 0.1)
-    # G12 = random_graph_generator(5000, 0.0041, 0.1)
-    # G13 = random_graph_generator(10000, 0.002, 0.1)
-    # G14 = random_graph_generator(5000, 0.0013, 0.1)
-
-    random_graphs = [
-        ("G1", 500, 0.1, 0.0416),
-        # ("G2", 1000, 0.1, 0.0204),
-        # ("G3", 2000, 0.1, 0.0101),
-        # ("G4", 3000, 0.1, 0.0071),
-        # ("G5", 4000, 0.1, 0.0052),
-        # ("G6", 5000, 0.1, 0.0041),
-        # ("G7", 500, 0.0416, 0.1),
-        # ("G8", 1000, 0.02, 0.1),
-        # ("G9", 2000, 0.0101, 0.1),
-        # ("G10", 3000, 0.0067, 0.1),
-        # ("G11", 4000, 0.0052, 0.1),
-        # ("G12", 5000, 0.0041, 0.1),
-        # ("G13", 10000, 0.002, 0.1),
-        # ("G14", 15000, 0.0013, 0.1)
-    ]
-    Find_K_strongest(random_graphs, k)
-    total_time = time.time() - begin_time
-    print("The total time is: " + str(total_time))
-
 
 def Find_K_strongest(graphs, k, ic_simulations=20, infected_threshold=0.3):
     num_of_total_diffusion_calculated = 0

@@ -58,7 +58,7 @@ def  Atag_calc(G):
     :return: the set of possible sources. (i.e. this function deletes from the graph all the nodes that can't reach all
     the other nodes of the active set.)
     """
-    Atag=[]
+    Atag = []
     for i in G.nodes:
         # a test that ensures that all the nodes of the graph are reached from i by a directed path.
         visited = []  # List to keep track of visited nodes.
@@ -78,6 +78,17 @@ def  Atag_calc(G):
         if visit_all_active:
             Atag.append(i)
 
+    return Atag
+
+
+def Atag_calc_new(G):
+    Atag = []
+    all_nodes = set(G.nodes)
+    for i in G.nodes:
+        reachable = nx.descendants(G, i)
+        reachable.add(i)  # include the source itself
+        if reachable >= all_nodes:
+            Atag.append(i)
     return Atag
 
 
