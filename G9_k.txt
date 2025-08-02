@@ -1,4 +1,4 @@
-Results for graph G1 with multiple sources
+Results for graph G9 with multiple sources
 ===============================================
 
 
@@ -6,60 +6,10 @@ Results for graph G1 with multiple sources
 
 
 --- Method 1: Top K Sources ---
-Results for graph G1 (total good diffusions: 1000)
+Results for graph G9 (total good diffusions: 1000)
 
 --- Evaluation 1: Exact match successes ---
-No loop successes: 11
-Max arborescence successes: 6
-
---- Evaluation 2: Recall percents ---
-No loop Recall: 0.11%
-Max arborescence Recall: 0.07%
-
---- Evaluation 3: Precision percents ---
-No loop precision: 0.11%
-Max arborescence precision: 0.07%
-
---- Evaluation 4: Distance-Based Precision percents ---
-No loop distance precision: 1.00%
-Max arborescence distance precision: 1.00%
-
-Number of too small diffusions: 1539
-Number of too small A': 39
-Total time elapsed: 240.91 seconds
-____________________________
-
-
---- Method 2: Run K Times ---
-Results for graph G1 (total good diffusions: 1000)
-
---- Evaluation 1: Exact match successes ---
-No loop successes: 2
-Max arborescence successes: 6
-
---- Evaluation 2: Recall percents ---
-No loop Recall: 0.10%
-Max arborescence Recall: 0.07%
-
---- Evaluation 3: Precision percents ---
-No loop precision: 0.11%
-Max arborescence precision: 0.07%
-
---- Evaluation 4: Distance-Based Precision percents ---
-No loop distance precision: 1.00%
-Max arborescence distance precision: 1.00%
-
-Number of too small diffusions: 1778
-Number of too small A': 43
-Total time elapsed: 286.22 seconds
-____________________________
-
-
---- Method 3: K Strongest ---
-Results for graph G1 (total good diffusions: 1000)
-
---- Evaluation 1: Exact match successes ---
-No loop successes: 8
+No loop successes: 6
 Max arborescence successes: 1
 
 --- Evaluation 2: Recall percents ---
@@ -67,14 +17,64 @@ No loop Recall: 0.11%
 Max arborescence Recall: 0.08%
 
 --- Evaluation 3: Precision percents ---
-No loop precision: 0.12%
+No loop precision: 0.11%
 Max arborescence precision: 0.08%
 
 --- Evaluation 4: Distance-Based Precision percents ---
 No loop distance precision: 1.00%
 Max arborescence distance precision: 1.00%
 
-Total time elapsed: 1110.36 seconds
+Number of too small diffusions: 4341
+Number of too small A': 1530
+Total time elapsed: 979.08 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph G9 (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 2
+Max arborescence successes: 2
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.08%
+Max arborescence Recall: 0.07%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.11%
+Max arborescence precision: 0.07%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.99%
+Max arborescence distance precision: 1.00%
+
+Number of too small diffusions: 4707
+Number of too small A': 1661
+Total time elapsed: 1592.15 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
+Results for graph G9 (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 1
+Max arborescence successes: 2
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.08%
+Max arborescence Recall: 0.07%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.11%
+Max arborescence precision: 0.07%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 1.00%
+Max arborescence distance precision: 1.00%
+
+Total time elapsed: 2602.89 seconds
 ____________________________
 
 
@@ -82,75 +82,75 @@ ____________________________
 
 
 --- Method 1: Top K Sources ---
-Results for graph G1 (total good diffusions: 1000)
-
---- Evaluation 1: Exact match successes ---
-No loop successes: 3
-Max arborescence successes: 0
-
---- Evaluation 2: Recall percents ---
-No loop Recall: 0.13%
-Max arborescence Recall: 0.09%
-
---- Evaluation 3: Precision percents ---
-No loop precision: 0.14%
-Max arborescence precision: 0.09%
-
---- Evaluation 4: Distance-Based Precision percents ---
-No loop distance precision: 1.00%
-Max arborescence distance precision: 1.00%
-
-Number of too small diffusions: 887
-Number of too small A': 59
-Total time elapsed: 251.00 seconds
-____________________________
-
-
---- Method 2: Run K Times ---
-Results for graph G1 (total good diffusions: 1000)
+Results for graph G9 (total good diffusions: 1000)
 
 --- Evaluation 1: Exact match successes ---
 No loop successes: 0
 Max arborescence successes: 0
 
 --- Evaluation 2: Recall percents ---
-No loop Recall: 0.11%
-Max arborescence Recall: 0.09%
+No loop Recall: 0.09%
+Max arborescence Recall: 0.05%
 
 --- Evaluation 3: Precision percents ---
-No loop precision: 0.12%
-Max arborescence precision: 0.09%
+No loop precision: 0.09%
+Max arborescence precision: 0.05%
 
 --- Evaluation 4: Distance-Based Precision percents ---
 No loop distance precision: 1.00%
 Max arborescence distance precision: 1.00%
 
-Number of too small diffusions: 880
-Number of too small A': 65
-Total time elapsed: 379.19 seconds
+Number of too small diffusions: 3234
+Number of too small A': 2447
+Total time elapsed: 972.61 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph G9 (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.07%
+Max arborescence Recall: 0.06%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.13%
+Max arborescence precision: 0.06%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.99%
+Max arborescence distance precision: 1.00%
+
+Number of too small diffusions: 3253
+Number of too small A': 2385
+Total time elapsed: 2025.63 seconds
 ____________________________
 
 
 --- Method 3: K Strongest ---
-Results for graph G1 (total good diffusions: 1000)
+Results for graph G9 (total good diffusions: 1000)
 
 --- Evaluation 1: Exact match successes ---
-No loop successes: 1
+No loop successes: 0
 Max arborescence successes: 0
 
 --- Evaluation 2: Recall percents ---
-No loop Recall: 0.11%
-Max arborescence Recall: 0.08%
+No loop Recall: 0.07%
+Max arborescence Recall: 0.06%
 
 --- Evaluation 3: Precision percents ---
-No loop precision: 0.12%
-Max arborescence precision: 0.08%
+No loop precision: 0.13%
+Max arborescence precision: 0.06%
 
 --- Evaluation 4: Distance-Based Precision percents ---
-No loop distance precision: 1.00%
+No loop distance precision: 0.99%
 Max arborescence distance precision: 1.00%
 
-Total time elapsed: 1562.60 seconds
+Total time elapsed: 3062.74 seconds
 ____________________________
 
 
@@ -158,74 +158,74 @@ ____________________________
 
 
 --- Method 1: Top K Sources ---
-Results for graph G1 (total good diffusions: 1000)
+Results for graph G9 (total good diffusions: 1000)
 
 --- Evaluation 1: Exact match successes ---
 No loop successes: 0
 Max arborescence successes: 0
 
 --- Evaluation 2: Recall percents ---
-No loop Recall: 0.15%
-Max arborescence Recall: 0.10%
+No loop Recall: 0.10%
+Max arborescence Recall: 0.05%
 
 --- Evaluation 3: Precision percents ---
-No loop precision: 0.15%
-Max arborescence precision: 0.10%
+No loop precision: 0.10%
+Max arborescence precision: 0.05%
 
 --- Evaluation 4: Distance-Based Precision percents ---
 No loop distance precision: 1.00%
 Max arborescence distance precision: 1.00%
 
-Number of too small diffusions: 314
-Number of too small A': 77
-Total time elapsed: 233.20 seconds
+Number of too small diffusions: 1166
+Number of too small A': 2988
+Total time elapsed: 1180.71 seconds
 ____________________________
 
 
 --- Method 2: Run K Times ---
-Results for graph G1 (total good diffusions: 1000)
+Results for graph G9 (total good diffusions: 1000)
 
 --- Evaluation 1: Exact match successes ---
 No loop successes: 0
 Max arborescence successes: 0
 
 --- Evaluation 2: Recall percents ---
-No loop Recall: 0.14%
-Max arborescence Recall: 0.11%
+No loop Recall: 0.06%
+Max arborescence Recall: 0.05%
 
 --- Evaluation 3: Precision percents ---
-No loop precision: 0.17%
-Max arborescence precision: 0.12%
+No loop precision: 0.13%
+Max arborescence precision: 0.05%
 
 --- Evaluation 4: Distance-Based Precision percents ---
-No loop distance precision: 1.00%
+No loop distance precision: 0.99%
 Max arborescence distance precision: 1.00%
 
-Number of too small diffusions: 325
-Number of too small A': 92
-Total time elapsed: 539.06 seconds
+Number of too small diffusions: 1401
+Number of too small A': 3496
+Total time elapsed: 3102.98 seconds
 ____________________________
 
 
 --- Method 3: K Strongest ---
-Results for graph G1 (total good diffusions: 1000)
+Results for graph G9 (total good diffusions: 1000)
 
 --- Evaluation 1: Exact match successes ---
 No loop successes: 0
 Max arborescence successes: 0
 
 --- Evaluation 2: Recall percents ---
-No loop Recall: 0.13%
-Max arborescence Recall: 0.12%
+No loop Recall: 0.06%
+Max arborescence Recall: 0.05%
 
 --- Evaluation 3: Precision percents ---
-No loop precision: 0.16%
-Max arborescence precision: 0.12%
+No loop precision: 0.13%
+Max arborescence precision: 0.05%
 
 --- Evaluation 4: Distance-Based Precision percents ---
-No loop distance precision: 1.00%
+No loop distance precision: 0.99%
 Max arborescence distance precision: 1.00%
 
-Total time elapsed: 2253.05 seconds
+Total time elapsed: 5418.85 seconds
 ____________________________
 

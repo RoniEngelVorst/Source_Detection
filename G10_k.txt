@@ -1,0 +1,58 @@
+Results for graph G10 with multiple sources
+===============================================
+
+
+=== Results for K = 2 ===
+
+
+--- Method 1: Top K Sources ---
+Results for graph G10 (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 3
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.08%
+Max arborescence Recall: 0.05%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.08%
+Max arborescence precision: 0.05%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.99%
+Max arborescence distance precision: 0.99%
+
+Number of too small diffusions: 5306
+Number of too small A': 2071
+Total time elapsed: 1745.36 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph G10 (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 1
+Max arborescence successes: 3
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.08%
+Max arborescence Recall: 0.07%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.12%
+Max arborescence precision: 0.07%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.96%
+Max arborescence distance precision: 0.99%
+
+Number of too small diffusions: 6063
+Number of too small A': 2405
+Total time elapsed: 2516.16 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
