@@ -107,3 +107,123 @@ ____________________________
 
 
 --- Method 2: Run K Times ---
+Results for graph G14 (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.04%
+Max arborescence Recall: 0.03%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.08%
+Max arborescence precision: 0.03%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.50%
+Max arborescence distance precision: 0.79%
+
+Total time elapsed: 61101.80 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
+Results for graph G14 (total good diffusions: 1000)
+
+ --- Evaluation 1: Exact match successes ---
+No loop successes: 1
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.04%
+Max arborescence Recall: 0.04%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.10%
+Max arborescence precision: 0.04%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.52%
+Max arborescence distance precision: 0.81%
+
+Total time elapsed: 60918.14 seconds
+____________________________
+
+
+=== Results for K = 5 ===
+
+
+--- Method 1: Top K Sources ---
+Results for graph G14 (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.06%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.06%
+Max arborescence precision: 0.02%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.91%
+Max arborescence distance precision: 0.92%
+
+Number of too small diffusions: 35954
+Number of too small A': 96813
+Total time elapsed: 79977.67 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph G14 (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.03%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.09%
+Max arborescence precision: 0.02%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.53%
+Max arborescence distance precision: 0.92%
+
+Number of too small diffusions: 38204
+Number of too small A': 102343
+Total time elapsed: 117380.96 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
+Results for graph G14 (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.03%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.09%
+Max arborescence precision: 0.02%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.52%
+Max arborescence distance precision: 0.92%
+
+Total time elapsed: 126803.56 seconds
+____________________________
+
