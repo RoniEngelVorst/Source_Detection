@@ -1,0 +1,239 @@
+Results for graph digg with multiple sources
+===============================================
+
+
+=== Results for K = 2 ===
+
+
+--- Method 1: Top K Sources ---
+Results for graph digg (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.04%
+Max arborescence Recall: 0.03%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.04%
+Max arborescence precision: 0.03%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.12%
+Max arborescence distance precision: 0.14%
+
+Number of too small diffusions: 11203
+Number of too small A': 3603
+Total time elapsed: 13142.13 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph digg (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.05%
+Max arborescence Recall: 0.06%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.09%
+Max arborescence precision: 0.06%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.12%
+Max arborescence distance precision: 0.19%
+
+Number of too small diffusions: 22314
+Number of too small A': 6604
+Total time elapsed: 13304.28 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
+Results for graph digg (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.03%
+Max arborescence Recall: 0.04%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.07%
+Max arborescence precision: 0.04%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.09%
+Max arborescence distance precision: 0.15%
+
+Total time elapsed: 13852.99 seconds
+____________________________
+
+
+=== Results for K = 3 ===
+
+
+--- Method 1: Top K Sources ---
+Results for graph digg (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.04%
+Max arborescence Recall: 0.03%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.05%
+Max arborescence precision: 0.03%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.13%
+Max arborescence distance precision: 0.14%
+
+Number of too small diffusions: 9942
+Number of too small A': 10955
+Total time elapsed: 21388.51 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph digg (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.02%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.05%
+Max arborescence precision: 0.03%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.07%
+Max arborescence distance precision: 0.17%
+
+Number of too small diffusions: 12523
+Number of too small A': 8252
+Total time elapsed: 32975.93 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
+Results for graph digg (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.02%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.06%
+Max arborescence precision: 0.03%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.06%
+Max arborescence distance precision: 0.18%
+
+Total time elapsed: 25031.70 seconds
+____________________________
+
+
+=== Results for K = 5 ===
+
+
+--- Method 1: Top K Sources ---
+Results for graph digg with multiple sources
+===============================================
+
+
+=== Results for K = 5 ===
+
+
+--- Method 1: Top K Sources ---
+Results for graph digg (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.03%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.04%
+Max arborescence precision: 0.02%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.14%
+Max arborescence distance precision: 0.16%
+
+Number of too small diffusions: 38489
+Number of too small A': 49153
+Total time elapsed: 75408.60 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph digg (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.02%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.09%
+Max arborescence precision: 0.03%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.07%
+Max arborescence distance precision: 0.18%
+
+Number of too small diffusions: 39113
+Number of too small A': 55957
+Total time elapsed: 97906.75 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
+Results for graph digg (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.02%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.09%
+Max arborescence precision: 0.03%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.04%
+Max arborescence distance precision: 0.18%
+
+Total time elapsed: 91013.58 seconds
+____________________________
+
