@@ -1,0 +1,231 @@
+Results for graph google_plus with multiple sources
+===============================================
+
+
+=== Results for K = 2 ===
+
+
+--- Method 1: Top K Sources ---
+Results for graph google_plus (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 8
+Max arborescence successes: 3
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.13%
+Max arborescence Recall: 0.12%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.13%
+Max arborescence precision: 0.12%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.64%
+Max arborescence distance precision: 0.65%
+
+Number of too small diffusions: 361
+Number of too small A': 307
+Total time elapsed: 31.91 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph google_plus (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 1
+Max arborescence successes: 3
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.08%
+Max arborescence Recall: 0.10%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.10%
+Max arborescence precision: 0.10%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.41%
+Max arborescence distance precision: 0.70%
+
+Number of too small diffusions: 480
+Number of too small A': 273
+Total time elapsed: 87.98 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
+Results for graph google_plus (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.07%
+Max arborescence Recall: 0.10%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.13%
+Max arborescence precision: 0.10%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.50%
+Max arborescence distance precision: 0.60%
+
+Total time elapsed: 89.05 seconds
+____________________________
+
+
+=== Results for K = 3 ===
+
+
+--- Method 1: Top K Sources ---
+Results for graph google_plus (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 2
+Max arborescence successes: 1
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.18%
+Max arborescence Recall: 0.14%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.19%
+Max arborescence precision: 0.15%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.63%
+Max arborescence distance precision: 0.63%
+
+Number of too small diffusions: 258
+Number of too small A': 574
+Total time elapsed: 44.46 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph google_plus (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.10%
+Max arborescence Recall: 0.12%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.19%
+Max arborescence precision: 0.13%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.53%
+Max arborescence distance precision: 0.61%
+
+Number of too small diffusions: 225
+Number of too small A': 567
+Total time elapsed: 41.16 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
+Results for graph google_plus (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.08%
+Max arborescence Recall: 0.12%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.24%
+Max arborescence precision: 0.13%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.52%
+Max arborescence distance precision: 0.61%
+
+Total time elapsed: 41.19 seconds
+____________________________
+
+
+=== Results for K = 5 ===
+
+
+--- Method 1: Top K Sources ---
+Results for graph google_plus (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.14%
+Max arborescence Recall: 0.13%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.16%
+Max arborescence precision: 0.15%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.60%
+Max arborescence distance precision: 0.62%
+
+Number of too small diffusions: 68
+Number of too small A': 1148
+Total time elapsed: 37.35 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph google_plus (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.10%
+Max arborescence Recall: 0.14%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.25%
+Max arborescence precision: 0.18%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.48%
+Max arborescence distance precision: 0.59%
+
+Number of too small diffusions: 67
+Number of too small A': 873
+Total time elapsed: 42.62 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
+Results for graph google_plus (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.05%
+Max arborescence Recall: 0.13%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.27%
+Max arborescence precision: 0.17%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.37%
+Max arborescence distance precision: 0.54%
+
+Total time elapsed: 43.33 seconds
+____________________________
+
