@@ -1,0 +1,231 @@
+Results for graph twitter with multiple sources
+===============================================
+
+
+=== Results for K = 2 ===
+
+
+--- Method 1: Top K Sources ---
+Results for graph twitter (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 35
+Max arborescence successes: 16
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.30%
+Max arborescence Recall: 0.25%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.30%
+Max arborescence precision: 0.25%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.66%
+Max arborescence distance precision: 0.66%
+
+Number of too small diffusions: 13331
+Number of too small A': 10059
+Total time elapsed: 110.98 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph twitter (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 3
+Max arborescence successes: 11
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.15%
+Max arborescence Recall: 0.15%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.18%
+Max arborescence precision: 0.15%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.56%
+Max arborescence distance precision: 0.61%
+
+Number of too small diffusions: 23545
+Number of too small A': 5662
+Total time elapsed: 175.74 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
+Results for graph twitter (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 3
+Max arborescence successes: 10
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.15%
+Max arborescence Recall: 0.18%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.28%
+Max arborescence precision: 0.18%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.55%
+Max arborescence distance precision: 0.56%
+
+Total time elapsed: 182.30 seconds
+____________________________
+
+
+=== Results for K = 3 ===
+
+
+--- Method 1: Top K Sources ---
+Results for graph twitter (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 3
+Max arborescence successes: 1
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.23%
+Max arborescence Recall: 0.20%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.24%
+Max arborescence precision: 0.20%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.51%
+Max arborescence distance precision: 0.53%
+
+Number of too small diffusions: 32886
+Number of too small A': 68068
+Total time elapsed: 646.19 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph twitter (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.17%
+Max arborescence Recall: 0.19%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.30%
+Max arborescence precision: 0.20%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.45%
+Max arborescence distance precision: 0.47%
+
+Number of too small diffusions: 61438
+Number of too small A': 36820
+Total time elapsed: 683.94 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
+Results for graph twitter (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.11%
+Max arborescence Recall: 0.18%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.31%
+Max arborescence precision: 0.18%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.44%
+Max arborescence distance precision: 0.52%
+
+Total time elapsed: 647.43 seconds
+____________________________
+
+
+=== Results for K = 5 ===
+
+
+--- Method 1: Top K Sources ---
+Results for graph twitter (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.15%
+Max arborescence Recall: 0.15%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.16%
+Max arborescence precision: 0.16%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.37%
+Max arborescence distance precision: 0.39%
+
+Number of too small diffusions: 69418
+Number of too small A': 738397
+Total time elapsed: 6126.06 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph twitter (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.11%
+Max arborescence Recall: 0.20%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.29%
+Max arborescence precision: 0.22%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.38%
+Max arborescence distance precision: 0.40%
+
+Number of too small diffusions: 499520
+Number of too small A': 960322
+Total time elapsed: 36796.71 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
+Results for graph twitter (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.06%
+Max arborescence Recall: 0.15%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.28%
+Max arborescence precision: 0.16%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.29%
+Max arborescence distance precision: 0.42%
+
+Total time elapsed: 80121.37 seconds
+____________________________
+
