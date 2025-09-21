@@ -1,0 +1,231 @@
+Results for graph advogato with multiple sources
+===============================================
+
+
+=== Results for K = 2 ===
+
+
+--- Method 1: Top K Sources ---
+Results for graph advogato (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.02%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.02%
+Max arborescence precision: 0.02%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.37%
+Max arborescence distance precision: 0.48%
+
+Number of too small diffusions: 1530
+Number of too small A': 478
+Total time elapsed: 67257.38 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph advogato (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.02%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.03%
+Max arborescence precision: 0.02%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.31%
+Max arborescence distance precision: 0.44%
+
+Number of too small diffusions: 1552
+Number of too small A': 482
+Total time elapsed: 132699.56 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
+Results for graph advogato (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.01%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.02%
+Max arborescence precision: 0.02%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.22%
+Max arborescence distance precision: 0.44%
+
+Total time elapsed: 107353.05 seconds
+____________________________
+
+
+=== Results for K = 3 ===
+
+
+--- Method 1: Top K Sources ---
+Results for graph advogato (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.02%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.02%
+Max arborescence precision: 0.02%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.36%
+Max arborescence distance precision: 0.60%
+
+Number of too small diffusions: 1029
+Number of too small A': 919
+Total time elapsed: 83530.58 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph advogato (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.02%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.02%
+Max arborescence precision: 0.02%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.30%
+Max arborescence distance precision: 0.59%
+
+Number of too small diffusions: 1030
+Number of too small A': 854
+Total time elapsed: 167468.18 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
+Results for graph advogato (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.01%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.04%
+Max arborescence precision: 0.02%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.17%
+Max arborescence distance precision: 0.64%
+
+Total time elapsed: 117921.70 seconds
+____________________________
+
+
+=== Results for K = 5 ===
+
+
+--- Method 1: Top K Sources ---
+Results for graph advogato (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.02%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.03%
+Max arborescence precision: 0.02%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.40%
+Max arborescence distance precision: 0.75%
+
+Number of too small diffusions: 739
+Number of too small A': 2343
+Total time elapsed: 130798.34 seconds
+____________________________
+
+
+--- Method 2: Run K Times ---
+Results for graph advogato (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.02%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.04%
+Max arborescence precision: 0.03%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.30%
+Max arborescence distance precision: 0.74%
+
+Number of too small diffusions: 697
+Number of too small A': 2452
+Total time elapsed: 242094.73 seconds
+____________________________
+
+
+--- Method 3: K Strongest ---
+Results for graph advogato (total good diffusions: 1000)
+
+--- Evaluation 1: Exact match successes ---
+No loop successes: 0
+Max arborescence successes: 0
+
+--- Evaluation 2: Recall percents ---
+No loop Recall: 0.01%
+Max arborescence Recall: 0.02%
+
+--- Evaluation 3: Precision percents ---
+No loop precision: 0.04%
+Max arborescence precision: 0.02%
+
+--- Evaluation 4: Distance-Based Precision percents ---
+No loop distance precision: 0.19%
+Max arborescence distance precision: 0.74%
+
+Total time elapsed: 164006.88 seconds
+____________________________
+
